@@ -3,8 +3,7 @@
 /* @var $model Paciente */
 
 $this->breadcrumbs=array(
-	'Pacientes'=>array('index'),
-	'Manage',
+	'Pacientes',
 );
 
 $this->menu=array(
@@ -26,7 +25,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Pacientes</h1>
+<h1>Pacientes</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -49,17 +48,38 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'Nombre_Apellido',
 		'Edad',
 		'Sexo',
-		'Fecha_de_nacimiento',
-		'Direccion',
+		'Telefono',
 		/*
 		'Barrio',
-		'Telefono',
 		'Ocupacion',
 		'Procedencia',
 		'Fecha_Realizacion',
 		*/
 		array(
 			'class'=>'CButtonColumn',
+			//Se agrega el adddiagnostico al lado de los iconos de historia y diagnostico
+			//'template'=>'{historia}{diagnostico}{adddiagnostico}',
+			'template'=>'{historia}{diagnostico}',
+			'buttons'=>array(
+					'historia' => array(
+						'label'=>"Historia Clinica",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/historia.png',	
+
+					),
+					'diagnostico' => array(
+						'label'=>"Diagnosticos",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/diagnosticos.png',	
+						'url'=>'Yii::app()->createUrl("diagnostico/adminPaciente",array("id"=>$data->id))',
+
+					),
+					//Icono de oreja con + para agregar diagnostico
+/*					'adddiagnostico' => array(
+						'label'=>"Agregar Diagnostico",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/nuevodiagnostico.png',
+						'url'=>'Yii::app()->createUrl("diagnostico/create",array("id"=>$data->id))',
+
+					),	*/
+			),
 		),
 	),
 )); ?>

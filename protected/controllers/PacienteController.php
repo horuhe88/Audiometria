@@ -133,6 +133,8 @@ class PacienteController extends Controller
 	 */
 	public function actionAdmin()
 	{
+		$this->layout="column1";
+
 		$model=new Paciente('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Paciente']))
@@ -170,4 +172,6 @@ class PacienteController extends Controller
 			Yii::app()->end();
 		}
 	}
+
+	
 }

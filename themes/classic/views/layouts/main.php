@@ -10,7 +10,7 @@
     <!-- Le styles -->
     <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/responsive.min.css" rel="stylesheet">
-
+    <link href="<?php echo Yii::app()->theme->baseUrl;?>/css/app.css" rel="stylesheet">
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,14 +46,29 @@
           <li><a href="#">Login</a></li>
         </ul> -->
 
-        <?php $this->widget('zii.widgets.CMenu',array(
+
+
+        <?php 
+
+        $home = "";
+        $urlHome = "";
+        if(Yii::app()->user->isGuest) {
+          $home = "Login";
+          $urlHome = "/site/index";
+        }          
+        else{
+          $home = "Pacientes";
+          $urlHome = "/paciente/admin";
+          }
+
+
+
+        $this->widget('zii.widgets.CMenu',array(
           'htmlOptions'=>array("class"=>"nav"),
           'items'=>array(
-            array('label'=>'Home', 'url'=>array('/site/index')),
-            array('label'=>'Graph', 'url'=>array('/site/graphic')),
-            array('label'=>'About', 'url'=>array('/site/page', 'view'=>'about')),
-            array('label'=>'Contact', 'url'=>array('/site/contact')),
-            array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+            array('label'=>$home, 'url'=>array($urlHome)),
+            array('label'=>'Diagnosticos', 'url'=>array('/diagnostico/admin'), 'visible'=>!Yii::app()->user->isGuest),
+            array('label'=>'Acerca', 'url'=>array('/site/page', 'view'=>'about')),
             array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
           ),
         )); ?>
@@ -137,6 +152,7 @@
                       consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
                       cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                       proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      hola
                     </p>
                 </section>
             </div>
