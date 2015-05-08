@@ -302,11 +302,11 @@ class DiagnosticoController extends Controller
 		$dataO[] = $d[0]["OIzq4000"];	
 		$dataO[] = $d[0]["ODer4000"];
 
-		//$dataO[] = $d[0]["OIzq6000"];	
+		$dataO[] = $d[0]["OIzq6000"];	
 		$dataO[] = $d[0]["ODer6000"];
 
 		$dataO[] = $d[0]["OIzq8000"];	
-		//$dataO[] = $d[0]["ODer8000"];
+		$dataO[] = $d[0]["ODer8000"];
 
 		$sum1=0;//SUMA VALORES PARES
 		$sum2=0;//SUMA VALORES IMPARES
@@ -317,6 +317,13 @@ class DiagnosticoController extends Controller
 		$prob=0;
 		$probd=0;
 
+	
+
+		$daIzq = "".$dataA[0].",".$dataA[2].",".$dataA[4].",".$dataA[5].",".$dataA[8].",".$dataA[10].",".$dataA[12].",".$dataA[14];
+		$daDer = "".$dataA[1].",".$dataA[3].",".$dataA[5].",".$dataA[7].",".$dataA[9].",".$dataA[11].",".$dataA[13].",".$dataA[15];
+
+		$doIzq = "".$dataO[0].",".$dataO[2].",".$dataO[4].",".$dataO[5].",".$dataO[8].",".$dataO[10].",".$dataO[12].",".$dataO[14];
+		$doDer = "".$dataO[1].",".$dataO[3].",".$dataO[5].",".$dataO[7].",".$dataO[9].",".$dataO[11].",".$dataO[13].",".$dataO[15];
 		
 		//-------PROMEDIO DE PERDIDA IZQ Y DER-------------------------------------------------------------------
 		for($i=0;$i<=7; $i++){
@@ -326,6 +333,7 @@ class DiagnosticoController extends Controller
 			$acum = $dataA[$cpar];
 			$sum1 = $sum1 + $acum;
 			
+
 			//OIDO DERECHO
 			$cpar = 2 * $i + 1;
 			$acum = $dataA[$cpar];
@@ -605,8 +613,9 @@ class DiagnosticoController extends Controller
 		$this->render('graph',array(
 			'id'=>$id,'prompe'=>$prompe,'prompe2'=>$prompe2,
 			'difI'=> $difI, 'difD'=> $difD,'gapI'=>$gapI,'gapD'=>$gapD,
-			'c'=>$c , 'cd'=>$cd, 'datgapOabs'=>$datgapOabs,'prob'=>$prob, 'probd'=>$probd, //'sel'=>$sel,
-		));
+			'c'=>$c , 'cd'=>$cd, 'datgapOabs'=>$datgapOabs,'prob'=>$prob, 'probd'=>$probd,
+			'daIzq'=>$daIzq,'doIzq'=>$doIzq, 'daDer'=>$daDer, 'doDer'=>$doDer 
+		));//'sel'=>$sel,
 	}
 
 
