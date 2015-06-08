@@ -25,7 +25,12 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Pacientes</h1>
+<?php
+	$ruta1 = Yii::app()->createUrl("paciente/create");
+?>
+
+<!-- <h1>Pacientes</h1> -->
+<h1>Pacientes  <?php echo CHtml::link('Agregar',$ruta1,array('class'=>'add-button')); ?></h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -44,9 +49,9 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'id',
+		'Cedula',
 		'Nombre_Apellido',
-		'Edad',
+		'Fecha_de_nacimiento',
 		'Sexo',
 		'Telefono',
 		/*
@@ -64,6 +69,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 					'historia' => array(
 						'label'=>"Historia Clinica",
 						'imageUrl'=>Yii::app()->request->baseUrl.'/images/historia.png',	
+						'url'=>'Yii::app()->createUrl("paciente/view",array("id"=>$data->id))',
 
 					),
 					'diagnostico' => array(

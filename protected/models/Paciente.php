@@ -7,6 +7,7 @@
  * @property integer $id
  * @property string $Nombre_Apellido
  * @property string $Edad
+ * @property string $Cedula
  * @property string $Sexo
  * @property string $Fecha_de_nacimiento
  * @property string $Direccion
@@ -43,11 +44,11 @@ class Paciente extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Nombre_Apellido, Edad, Sexo, Direccion, Barrio, Telefono, Ocupacion, Procedencia', 'length', 'max'=>45),
+			array('Nombre_Apellido, Edad, Cedula, Sexo, Direccion, Barrio, Telefono, Ocupacion, Procedencia', 'length', 'max'=>45),
 			array('Fecha_de_nacimiento, Fecha_Realizacion', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, Nombre_Apellido, Edad, Sexo, Fecha_de_nacimiento, Direccion, Barrio, Telefono, Ocupacion, Procedencia, Fecha_Realizacion', 'safe', 'on'=>'search'),
+			array('id, Nombre_Apellido, Edad, Cedula, Sexo, Fecha_de_nacimiento, Direccion, Barrio, Telefono, Ocupacion, Procedencia, Fecha_Realizacion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,6 +79,7 @@ class Paciente extends CActiveRecord
 			'id' => 'ID',
 			'Nombre_Apellido' => 'Nombre Apellido',
 			'Edad' => 'Edad',
+			'Cedula' => 'Cedula',
 			'Sexo' => 'Sexo',
 			'Fecha_de_nacimiento' => 'Fecha De Nacimiento',
 			'Direccion' => 'Direccion',
@@ -110,6 +112,7 @@ class Paciente extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('Nombre_Apellido',$this->Nombre_Apellido,true);
 		$criteria->compare('Edad',$this->Edad,true);
+		$criteria->compare('Cedula',$this->Cedula,true);
 		$criteria->compare('Sexo',$this->Sexo,true);
 		$criteria->compare('Fecha_de_nacimiento',$this->Fecha_de_nacimiento,true);
 		$criteria->compare('Direccion',$this->Direccion,true);

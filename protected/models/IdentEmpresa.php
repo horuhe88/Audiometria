@@ -5,7 +5,7 @@
  *
  * The followings are the available columns in table 'ident_empresa':
  * @property integer $id
- * @property string $idf_empresa
+ * @property integer $id_Paciente
  * @property string $Fecha
  * @property string $Nombre_E
  * @property string $RUT
@@ -35,12 +35,12 @@ class IdentEmpresa extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('idf_empresa, Nombre_E, RUT, Direccion', 'length', 'max'=>45),
+			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
+			array('Nombre_E, RUT, Direccion', 'length', 'max'=>45),
 			array('Fecha', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idf_empresa, Fecha, Nombre_E, RUT, Direccion', 'safe', 'on'=>'search'),
+			array('id, id_Paciente, Fecha, Nombre_E, RUT, Direccion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,10 +65,10 @@ class IdentEmpresa extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'idf_empresa' => 'Idf Empresa',
+			'id_Paciente' => 'Id Paciente',
 			'Fecha' => 'Fecha',
-			'Nombre_E' => 'Nombre E',
-			'RUT' => 'Rut',
+			'Nombre_E' => 'Nombre Empresa',
+			'RUT' => 'RUT',
 			'Direccion' => 'Direccion',
 		);
 	}
@@ -92,7 +92,7 @@ class IdentEmpresa extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('idf_empresa',$this->idf_empresa,true);
+		$criteria->compare('id_Paciente',$this->id_Paciente);
 		$criteria->compare('Fecha',$this->Fecha,true);
 		$criteria->compare('Nombre_E',$this->Nombre_E,true);
 		$criteria->compare('RUT',$this->RUT,true);

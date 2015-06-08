@@ -5,10 +5,12 @@
  *
  * The followings are the available columns in table 'ant_otologicos':
  * @property integer $id
+ * @property integer $id_Paciente
  * @property string $aculenos_tinilus
  * @property string $tipo_acu_tin
  * @property string $vertigo
  * @property string $af_pos_cabeza
+ * @property string $hora_aparicion
  * @property string $otalgia
  * @property string $oido
  * @property string $dolor
@@ -39,11 +41,11 @@ class AntOtologicos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('aculenos_tinilus, tipo_acu_tin, vertigo, af_pos_cabeza, otalgia, oido, dolor, otorrea, otorragia, otros, otr_sint_otologicos', 'length', 'max'=>45),
+			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
+			array('aculenos_tinilus, tipo_acu_tin, vertigo, af_pos_cabeza, hora_aparicion, otalgia, oido, dolor, otorrea, otorragia, otros, otr_sint_otologicos', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, aculenos_tinilus, tipo_acu_tin, vertigo, af_pos_cabeza, otalgia, oido, dolor, otorrea, otorragia, otros, otr_sint_otologicos', 'safe', 'on'=>'search'),
+			array('id, id_Paciente, aculenos_tinilus, tipo_acu_tin, vertigo, af_pos_cabeza, hora_aparicion, otalgia, oido, dolor, otorrea, otorragia, otros, otr_sint_otologicos', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,17 +68,19 @@ class AntOtologicos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'aculenos_tinilus' => 'Aculenos Tinilus',
-			'tipo_acu_tin' => 'Tipo Acu Tin',
+			'id_Paciente' => 'Id Paciente',
+			'aculenos_tinilus' => 'Aculenos o Tinilus',
+			'tipo_acu_tin' => 'Tipo de Ruido',
 			'vertigo' => 'Vertigo',
-			'af_pos_cabeza' => 'Af Pos Cabeza',
+			'af_pos_cabeza' => 'Afecta con cambios de posicion de cabeza',
+			'hora_aparicion' => 'Hora de Aparicion',
 			'otalgia' => 'Otalgia',
-			'oido' => 'Oido',
+			'oido' => 'Cual Oido',
 			'dolor' => 'Dolor',
 			'otorrea' => 'Otorrea',
 			'otorragia' => 'Otorragia',
 			'otros' => 'Otros',
-			'otr_sint_otologicos' => 'Otr Sint Otologicos',
+			'otr_sint_otologicos' => 'Otros sintomas otologicos',
 		);
 	}
 
@@ -99,10 +103,12 @@ class AntOtologicos extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_Paciente',$this->id_Paciente);
 		$criteria->compare('aculenos_tinilus',$this->aculenos_tinilus,true);
 		$criteria->compare('tipo_acu_tin',$this->tipo_acu_tin,true);
 		$criteria->compare('vertigo',$this->vertigo,true);
 		$criteria->compare('af_pos_cabeza',$this->af_pos_cabeza,true);
+		$criteria->compare('hora_aparicion',$this->hora_aparicion,true);
 		$criteria->compare('otalgia',$this->otalgia,true);
 		$criteria->compare('oido',$this->oido,true);
 		$criteria->compare('dolor',$this->dolor,true);

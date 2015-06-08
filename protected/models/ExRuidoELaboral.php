@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'ex_ruido_e_laboral':
  * @property integer $id
+ * @property integer $id_Paciente
  * @property string $tipo
  * @property string $discoteca
  * @property string $casa
@@ -36,11 +37,11 @@ class ExRuidoELaboral extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
 			array('tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion', 'safe', 'on'=>'search'),
+			array('id, id_Paciente, tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,14 +64,15 @@ class ExRuidoELaboral extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'id_Paciente' => 'Id Paciente',
 			'tipo' => 'Tipo',
 			'discoteca' => 'Discoteca',
 			'casa' => 'Casa',
 			'motociclismo' => 'Motociclismo',
-			'rep_musica' => 'Rep Musica',
-			'arma_fuego' => 'Arma Fuego',
+			'rep_musica' => 'Reproductor de audio personal',
+			'arma_fuego' => 'Armas de Fuego',
 			'otro' => 'Otro',
-			'frec_exposicion' => 'Frec Exposicion',
+			'frec_exposicion' => 'Frecuencia Exposicion',
 		);
 	}
 
@@ -93,6 +95,7 @@ class ExRuidoELaboral extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_Paciente',$this->id_Paciente);
 		$criteria->compare('tipo',$this->tipo,true);
 		$criteria->compare('discoteca',$this->discoteca,true);
 		$criteria->compare('casa',$this->casa,true);

@@ -5,10 +5,13 @@
  *
  * The followings are the available columns in table 'ant_personales':
  * @property integer $id
+ * @property integer $id_Pacientes
  * @property string $trat_farmacologico
  * @property string $trat_atuberculosis
  * @property string $trat_aglucosidos
+ * @property string $dosis
  * @property string $enf_ORL
+ * @property string $detallar
  * @property string $fumador
  * @property string $num_cigarrillos_dia
  * @property string $alcohol
@@ -37,11 +40,11 @@ class AntPersonales extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('trat_farmacologico, trat_atuberculosis, trat_aglucosidos, enf_ORL, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'length', 'max'=>45),
+			array('id, id_Pacientes', 'numerical', 'integerOnly'=>true),
+			array('trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, trat_farmacologico, trat_atuberculosis, trat_aglucosidos, enf_ORL, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'safe', 'on'=>'search'),
+			array('id, id_Pacientes, trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -64,15 +67,18 @@ class AntPersonales extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'trat_farmacologico' => 'Trat Farmacologico',
-			'trat_atuberculosis' => 'Trat Atuberculosis',
-			'trat_aglucosidos' => 'Trat Aglucosidos',
-			'enf_ORL' => 'Enf Orl',
+			'id_Pacientes' => 'Id Pacientes',
+			'trat_farmacologico' => 'Tratamiento Farmacologico',
+			'trat_atuberculosis' => 'Tratamiento con antituberculosos',
+			'trat_aglucosidos' => 'Tratamiento con Aminoglucosidos',
+			'dosis' => 'Dosis',
+			'enf_ORL' => 'Enfermedades diagnosticadas por ORL',
+			'detallar' => 'Detallar',
 			'fumador' => 'Fumador',
-			'num_cigarrillos_dia' => 'Num Cigarrillos Dia',
+			'num_cigarrillos_dia' => 'N° Cigarrillos/Dia',
 			'alcohol' => 'Alcohol',
-			'emf_afec_otica' => 'Emf Afec Otica',
-			'inter_quirurgica' => 'Inter Quirurgica',
+			'emf_afec_otica' => 'Enfermedades generales padecidas con posible afeccion otica',
+			'inter_quirurgica' => 'Intervención Quirurgica',
 		);
 	}
 
@@ -95,10 +101,13 @@ class AntPersonales extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_Pacientes',$this->id_Pacientes);
 		$criteria->compare('trat_farmacologico',$this->trat_farmacologico,true);
 		$criteria->compare('trat_atuberculosis',$this->trat_atuberculosis,true);
 		$criteria->compare('trat_aglucosidos',$this->trat_aglucosidos,true);
+		$criteria->compare('dosis',$this->dosis,true);
 		$criteria->compare('enf_ORL',$this->enf_ORL,true);
+		$criteria->compare('detallar',$this->detallar,true);
 		$criteria->compare('fumador',$this->fumador,true);
 		$criteria->compare('num_cigarrillos_dia',$this->num_cigarrillos_dia,true);
 		$criteria->compare('alcohol',$this->alcohol,true);

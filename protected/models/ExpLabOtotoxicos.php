@@ -5,8 +5,11 @@
  *
  * The followings are the available columns in table 'exp_lab_ototoxicos':
  * @property integer $id
+ * @property integer $id_empresa
  * @property string $sol_organicos
  * @property string $quim_industriales
+ * @property string $otroSO
+ * @property string $otroQI
  *
  * The followings are the available model relations:
  * @property IdentEmpresa $id0
@@ -30,11 +33,11 @@ class ExpLabOtotoxicos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
-			array('sol_organicos, quim_industriales', 'length', 'max'=>45),
+			array('id, id_empresa', 'numerical', 'integerOnly'=>true),
+			array('sol_organicos, quim_industriales, otroSO, otroQI', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, sol_organicos, quim_industriales', 'safe', 'on'=>'search'),
+			array('id, id_empresa, sol_organicos, quim_industriales, otroSO, otroQI', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -57,8 +60,11 @@ class ExpLabOtotoxicos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'sol_organicos' => 'Sol Organicos',
-			'quim_industriales' => 'Quim Industriales',
+			'id_empresa' => 'Id Empresa',
+			'sol_organicos' => 'Solventes Organicos',
+			'quim_industriales' => 'Quimicos Industriales',
+			'otroSO' => 'Otro',
+			'otroQI' => 'Otro',
 		);
 	}
 
@@ -81,8 +87,11 @@ class ExpLabOtotoxicos extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_empresa',$this->id_empresa);
 		$criteria->compare('sol_organicos',$this->sol_organicos,true);
 		$criteria->compare('quim_industriales',$this->quim_industriales,true);
+		$criteria->compare('otroSO',$this->otroSO,true);
+		$criteria->compare('otroQI',$this->otroQI,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

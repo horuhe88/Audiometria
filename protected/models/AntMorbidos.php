@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'ant_morbidos':
  * @property integer $id
+ * @property integer $id_Pacientes
  * @property string $hip_arterial
  * @property string $hip_colesterolemia
  * @property string $hipotiroidismo
@@ -36,11 +37,11 @@ class AntMorbidos extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('id, id_Pacientes', 'numerical', 'integerOnly'=>true),
 			array('hip_arterial, hip_colesterolemia, hipotiroidismo, barotrauma, diab_mellitus, enf_renal, trauma_ac_agudo, vibraciones', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, hip_arterial, hip_colesterolemia, hipotiroidismo, barotrauma, diab_mellitus, enf_renal, trauma_ac_agudo, vibraciones', 'safe', 'on'=>'search'),
+			array('id, id_Pacientes, hip_arterial, hip_colesterolemia, hipotiroidismo, barotrauma, diab_mellitus, enf_renal, trauma_ac_agudo, vibraciones', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,13 +64,14 @@ class AntMorbidos extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'hip_arterial' => 'Hip Arterial',
-			'hip_colesterolemia' => 'Hip Colesterolemia',
+			'id_Pacientes' => 'Id Pacientes',
+			'hip_arterial' => 'Hipertension Arterial',
+			'hip_colesterolemia' => 'Hipercolesterolemia',
 			'hipotiroidismo' => 'Hipotiroidismo',
 			'barotrauma' => 'Barotrauma',
-			'diab_mellitus' => 'Diab Mellitus',
-			'enf_renal' => 'Enf Renal',
-			'trauma_ac_agudo' => 'Trauma Ac Agudo',
+			'diab_mellitus' => 'Diabetes Mellitus',
+			'enf_renal' => 'Enfermedad Renal',
+			'trauma_ac_agudo' => 'Traumatismo Acustico Agudo',
 			'vibraciones' => 'Vibraciones',
 		);
 	}
@@ -93,6 +95,7 @@ class AntMorbidos extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_Pacientes',$this->id_Pacientes);
 		$criteria->compare('hip_arterial',$this->hip_arterial,true);
 		$criteria->compare('hip_colesterolemia',$this->hip_colesterolemia,true);
 		$criteria->compare('hipotiroidismo',$this->hipotiroidismo,true);

@@ -45,27 +45,43 @@ $this->breadcrumbs=array(
 
     $('#oidoDerecho').highcharts({
         chart: {
-            type: 'spline'
+            type: 'line'
         },
         title: {
-            text: 'Monthly Average Temperature'
+            text: 'Audiograma'
         },
-        subtitle: {
-            text: 'Source: WorldClimate.com'
-        },
-        xAxis: {gridLineWidth: 1,
+
+        xAxis: {
+        	//Color borde grafica en eje X
+            lineColor: '#666666',
+            lineWidth: 1,
+
+			tickmarkPlacement: 'on',//Colocando ticks para completar cuadricula
+        	gridLineWidth: 1,
             align: 'right',
             categories: ['250', '500', '1000', '2000', '3000',
                 '4000', '6000', '8000']
         },
         yAxis: {
-            min: -101,
+            min: -110,max: 10,
+            //Color borde grafica en eje Y
+            lineColor: '#666666',
+            lineWidth: 1,
 
-            labels: {
-                formatter: function () {
-                    return this.value;
-                }
+            tickInterval: 10,//Intervalo de 10 en 10
+
+        //Metodo para quitar signos menos
+        labels: {
+            formatter: function() {
+                return Math.abs(this.value);
             }
+        },
+        //Linea de -20 db
+        plotLines: [{
+                value: -20,
+                width: 4,
+                color: '#000000'
+            }]
         },
 
         tooltip: {
@@ -77,27 +93,116 @@ $this->breadcrumbs=array(
                 marker: {
                     radius: 4,
                     lineColor: '#666666',
-                    lineWidth: 1
+                    lineWidth: 1,
                 }
             }
         },
         series: [{
             name: 'Aereo',
+            color: '#F80000',
             marker: {
-                symbol: 'square'
+//                symbol: 'triangle'
+				  symbol: 'url(https://www.hscripts.com/freeimages/icons/arrows/left-arrow/larrow5.gif)'
             },
             data: aereoA
 
 
         }, {
             name: 'Oseo',
+            color: '#3E5F8A',
+            dashStyle: 'Dash',//Estilo linea
             marker: {
-                symbol: 'diamond'
+                symbol: 'circle'
             },
             data: oseoA
             }]
     });
 }
+
+
+    function graphOidoIzquierdo() {
+
+        
+        var oseoA = orderArray(oseoID,1);
+        var aereoA = orderArray(aereoID,0);
+
+
+    $('#oidoIzquierdo').highcharts({
+        chart: {
+            type: 'line'
+        },
+        title: {
+            text: 'Audiograma'
+        },
+
+        xAxis: {
+            //Color borde grafica en eje X
+            lineColor: '#666666',
+            lineWidth: 1,
+
+            tickmarkPlacement: 'on',//Colocando ticks para completar cuadricula
+            gridLineWidth: 1,
+            align: 'right',
+            categories: ['250', '500', '1000', '2000', '3000',
+                '4000', '6000', '8000']
+        },
+        yAxis: {
+            min: -110,max: 10,
+            //Color borde grafica en eje Y
+            lineColor: '#666666',
+            lineWidth: 1,
+
+            tickInterval: 10,//Intervalo de 10 en 10
+
+        //Metodo para quitar signos menos
+        labels: {
+            formatter: function() {
+                return Math.abs(this.value);
+            }
+        },
+        //Linea de -20 db
+        plotLines: [{
+                value: -20,
+                width: 4,
+                color: '#000000'
+            }]
+        },
+
+        tooltip: {
+            crosshairs: true,
+            shared: true
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    radius: 4,
+                    lineColor: '#666666',
+                    lineWidth: 1,
+                }
+            }
+        },
+        series: [{
+            name: 'Aereo',
+            color: '#F80000',
+            marker: {
+//                symbol: 'triangle'
+                  symbol: 'url(https://www.hscripts.com/freeimages/icons/arrows/left-arrow/larrow5.gif)'
+            },
+            data: aereoA
+
+
+        }, {
+            name: 'Oseo',
+            color: '#3E5F8A',
+            dashStyle: 'Dash',//Estilo linea
+            marker: {
+                symbol: 'circle'
+            },
+            data: oseoA
+            }]
+    });
+}
+
 
 function orderArray(dataA, type){
 
@@ -120,15 +225,11 @@ function orderArray(dataA, type){
 	for(i=0; i< dataA.length; i++){
 			var index = f[i];
 			if(an[i] != ""){
-
-				console.log("Entro en 1");
-				a[i] = {y:parseInt(dataA[i]),  marker: {
+				a[i] = {y:parseInt(dataA[i])*(-1),  marker: {
                     symbol: 'url('+an[i]+')'
                 },posicion:i,tipo:type, onclick:function (){onClickPoint(this.posicion, this.tipo);}};
-
-                
 			}else{
-				a[i] = {y:parseInt(dataA[i]),posicion:i,tipo:type, onclick:function (){onClickPoint(this.posicion, this.tipo);}};
+				a[i] = {y:parseInt(dataA[i])*(-1),posicion:i,tipo:type, onclick:function (){onClickPoint(this.posicion, this.tipo);}};
 				
 			}
 
@@ -159,55 +260,75 @@ function setConvetion(img){
 
 
 	graphOidoDerecho();
+    graphOidoIzquierdo();
+
 }
 
 </script>
 
 
+<table style="width:100%">
+    <tr>
+            <script src="<?PHP echo Yii::app()->theme->baseUrl;?>/js/highcharts.js"></script>
+            <script src="<?PHP echo Yii::app()->theme->baseUrl;?>/js/modules/exporting.js"></script>
 
-<h1>Oido Derecho</h1>
+     <td>
+            <h1>Oido Derecho</h1>
+            <div id="oidoDerecho" style="min-width: 310px; height: 400px; max-width: 450px ; margin: 0 auto"></div>
 
-<!-- <img width="615px" height="450px" src="<php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/graphI/<php echo $id;?>?type=Izq&?sel=<php echo $sel;?>"  /> -->
-<!--<script src="../../js/highcharts.js"></script>
-<script src="../../js/modules/exporting.js"></script>-->
+            <div>  
+            <img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png" width="28" height="21" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png')"/>
+            <img  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png')"/>
+            <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png')"/>
+            <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png')"/>
+            <img  src="http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png" onclick="setConvetion('http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png')"/>
+            </div>
 
-<script src="<?PHP echo Yii::app()->theme->baseUrl;?>/js/highcharts.js"></script>
-<script src="<?PHP echo Yii::app()->theme->baseUrl;?>/js/modules/exporting.js"></script>
-<div id="oidoDerecho" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            <h1>Promedio de Perdida:</h1>
+            <pre><H1><?php echo $prompe2; ?></h1></pre>
+            <pre><H1><?php echo $grade2; ?></h1></pre>
+            <pre><H1><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
+            <pre><H1><?php echo $gapD; ?></h1></pre>
+            <pre><H1><?php echo 'val < de 20(cgd): '.$probd; ?></h1></pre>
+            <pre><H1><?php echo "<PRE>";
+            var_dump($difD);
+            echo "</PRE>"; ?></h1></pre>
+     </td>
 
+     <td style="width:5%">  </td>
 
-<div>  
-<img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png')"/>
-<img  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png')"/>
-<img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png')"/>
-<img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png')"/>
-</div>
+     <td>
+            <h1>Oido Izquierdo</h1>
+            <div id="oidoIzquierdo" style="min-width: 310px; height: 400px; max-width: 450px; margin: 0 auto"></div>
 
+            <div>
+            <img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_close-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_close-32.png')">
+            <img  src="https://cdn2.iconfinder.com/data/icons/lightly-icons/24/chevron-right-48.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/lightly-icons/24/chevron-right-48.png')">
+            <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-32.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-32.png')">
+            <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png')">
+            <img  src="http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png" onclick="setConvetion('http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png')"/>
+            </div>
 
+            <h1>Promedio de Perdida:</h1> 
+            <pre><H1><?php echo $prompe; ?></h1></pre> 
+            <pre><H1><?php echo $grade; ?></h1></pre>
+            <pre><H1><?php echo 'val gap(cd): '.$c; ?></h1></pre>
+            <pre><H1><?php echo $gapI; ?></h1></pre>
+            <pre><H1><?php echo 'val < de 20(cgd): '.$prob; ?></h1></pre>
 
-<h1>Promedio de Perdida:</h1>
+            <pre><H1><?php echo "<PRE>";
+            var_dump($difI);
+            echo "</PRE>"; ?></h1></pre>
+     </td>
 
-<pre><H1><?php echo $prompe; ?></h1></pre>
+    </tr>
+</table>
 
-<h1>Oido Derecho</h1>
-
-<img width="615px" height="450px" src="<?php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/graphD/<?php echo $id;?>?type=Der"  />
-<div>
-<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/DiagnosticoController/<?php echo $id;?>?sel=2"><img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_close-32.png"></a>
-<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/DiagnosticoController/<?php echo $id;?>?sel=4"><img  src="https://cdn2.iconfinder.com/data/icons/lightly-icons/24/chevron-right-48.png"></a>
-<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/DiagnosticoController/<?php echo $id;?>?sel=5"><img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-32.png"></a>
-<a href="<?php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/DiagnosticoController/<?php echo $id;?>?sel=8"><img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png"></a>
-
-<!-- <a href="<php echo Yii::app()->request->baseUrl; ?>/index.php/diagnostico/DiagnosticoController/<php echo $id;?>?sel=9"><img  src="http://mat.ucsb.edu/glv/gfx/IconTriangleD.png"></a> -->
-</div>
-<h1>Promedio de Perdida:</h1> 
-
-<pre><H1><?php echo $prompe2; ?></h1></pre> 
 
 <?php
 	echo "<script type='text/javascript'>
 			loadData('".$doDer."','".$daDer."','".$doIzq."','".$daIzq."')
-			graphOidoDerecho();
+			graphOidoDerecho();graphOidoIzquierdo();
 		  </script>";
 ?>
 

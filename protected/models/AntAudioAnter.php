@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'ant_audio_anter':
  * @property integer $id
+ * @property integer $id_Paciente
  * @property string $fecha_examen
  * @property string $resultado
  * @property string $lugar_examen
@@ -33,12 +34,12 @@ class AntAudioAnter extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
 			array('resultado, lugar_examen, exa_audio_complemen, observaciones', 'length', 'max'=>45),
 			array('fecha_examen', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fecha_examen, resultado, lugar_examen, exa_audio_complemen, observaciones', 'safe', 'on'=>'search'),
+			array('id, id_Paciente, fecha_examen, resultado, lugar_examen, exa_audio_complemen, observaciones', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,10 +62,11 @@ class AntAudioAnter extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'id_Paciente' => 'Id Paciente',
 			'fecha_examen' => 'Fecha Examen',
 			'resultado' => 'Resultado',
-			'lugar_examen' => 'Lugar Examen',
-			'exa_audio_complemen' => 'Exa Audio Complemen',
+			'lugar_examen' => 'Lugar donde se efectuo el examen',
+			'exa_audio_complemen' => 'Otros examenes audiologicos complementarios si corresponde',
 			'observaciones' => 'Observaciones',
 		);
 	}
@@ -88,6 +90,7 @@ class AntAudioAnter extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_Paciente',$this->id_Paciente);
 		$criteria->compare('fecha_examen',$this->fecha_examen,true);
 		$criteria->compare('resultado',$this->resultado,true);
 		$criteria->compare('lugar_examen',$this->lugar_examen,true);

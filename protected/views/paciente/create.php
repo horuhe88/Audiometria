@@ -3,8 +3,8 @@
 /* @var $model Paciente */
 
 $this->breadcrumbs=array(
-	'Pacientes'=>array('index'),
-	'Create',
+	'Pacientes'=>array('admin'),
+	'Agregar Historia Clinica',
 );
 
 $this->menu=array(
@@ -13,6 +13,16 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Paciente</h1>
+<h1>Agregar Historia Clinica</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model)); ?>
+<?php $this->renderPartial('_formcreate', array(
+			'model'=>$model,
+			'empresa'=>$empresa,
+			'exposicionLaboral'=>$exposicionLaboral,
+			'exposicionActual'=>$exposicionActual,
+			'exposicionRuidoExtra'=>$exposicionRuidoExtra,
+			'antecedentes'=>$antecedentes,
+			'antecedentesMorbidos'=>$antecedentesMorbidos,
+			'antecedentesOtologicos'=>$antecedentesOtologicos,
+			'antAudioAnter'=>$antAudioAnter
+		)); ?>

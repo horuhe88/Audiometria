@@ -51,8 +51,28 @@ class PacienteController extends Controller
 	 */
 	public function actionView($id)
 	{
+		$this->layout="column1";
+
+		$empresa = IdentEmpresa::model()->find("id_Paciente=:id_Paciente",array(':id_Paciente'=>''.$id));
+		//$exposicionLaboral = HLaboralExpA::model()->find('id_empresa=:id_empresa',array(':id_empresa'=>$empresa->id));
+		$exposicionActual = HLaboralExpA::model()->find('id_empresa=:id_empresa',array(':id_empresa'=>$empresa->id));
+		//$exposicionRuidoExtra = HLaboralExpA::model()->find('id_Paciente=:id_Paciente',array(':id_Paciente'=>$id));
+		//$antecedentes = HLaboralExpA::model()->find('id_Pacientes=:id_Pacientes',array(':id_Pacientes'=>$id));
+		//$antecedentesMorbidos = HLaboralExpA::model()->find('id_Pacientes=:id_Pacientes',array(':id_Pacientes'=>$id));
+		//$antecedentesOtologicos = HLaboralExpA::model()->find('id_Paciente=:id_Paciente',array(':id_Paciente'=>$id));
+		//$antAudioAnter = HLaboralExpA::model()->find('id_Paciente=:id_Paciente',array(':id_Paciente'=>$id));
+
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
+			'empresa'=>$empresa,
+			'exposicionActual'=>$exposicionActual,
+		//	'exposicionLaboral'=>$exposicionLaboral,
+		//	'exposicionRuidoExtra'=>$exposicionRuidoExtra,
+		//	'antecedentes'=>$antecedentes,
+		//	'antecedentesMorbidos'=>$antecedentesMorbidos,
+		//	'antecedentesOtologicos'=>$antecedentesOtologicos,
+		//	'antAudioAnter'=>$antAudioAnter
 		));
 	}
 
@@ -62,7 +82,18 @@ class PacienteController extends Controller
 	 */
 	public function actionCreate()
 	{
+		$this->layout="column1";
+		echo "Entro1";
+
 		$model=new Paciente;
+		$empresa = new IdentEmpresa;
+		$exposicionActual =  new HLaboralExpA;
+		$exposicionLaboral = new ExpLabOtotoxicos;
+		$exposicionRuidoExtra = new ExRuidoELaboral;
+		$antecedentes = new AntPersonales;
+		$antecedentesMorbidos = new AntMorbidos;
+		$antecedentesOtologicos = new AntOtologicos;
+		$antAudioAnter = new AntAudioAnter;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -70,12 +101,65 @@ class PacienteController extends Controller
 		if(isset($_POST['Paciente']))
 		{
 			$model->attributes=$_POST['Paciente'];
-			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+			$model->Fecha_Realizacion = date("y-m-d");
+
+			echo "Entro2";
+
+			if($model->save()){
+				//$this->redirect(array('view','id'=>$model->id));
+
+				echo "Entro3";
+
+				$empresa->attributes=$_POST['IdentEmpresa'];
+				$empresa->id_Paciente = $model->$id;
+				$empresa->Fecha = date("y-m-d");
+				$empresa->save();
+
+				$exposicionActual->attributes=$_POST['HLaboralExpA'];
+				$exposicionActual->id_empresa = $empresa->id;
+				$exposicionActual->fecha = date("y-m-d");
+				$exposicionActual->save();
+
+				$exposicionLaboral->attributes=$_POST['ExpLabOtotoxicos'];
+				$exposicionLaboral->id_empresa = $empresa->id;
+				$exposicionLaboral->save();
+
+				$exposicionRuidoExtra->attributes=$_POST['ExRuidoELaboral'];
+				$exposicionRuidoExtra->id_Paciente = $model->$id;
+				$exposicionRuidoExtra->save();
+
+				$antecedentes->attributes=$_POST['AntPersonales'];
+				$antecedentes->id_Pacientes=$model->$id;
+				$antecedentes->save();
+
+				$antecedentesMorbidos->attributes=$_POST['AntMorbidos'];
+				$antecedentesMorbidos->id_Pacientes = $model->$id;
+				$antecedentesMorbidos->save();
+
+				$antecedentesOtologicos->attributes=$_POST['AntOtologicos'];
+				$antecedentesOtologicos->id_Paciente = $model->$id;
+				$antecedentesOtologicos->save();
+
+				$antAudioAnter->attributes=$_POST['AntAudioAnter'];
+				$antAudioAnter->id_Paciente = $model->$id;
+				$antAudioAnter->save();
+
+
+				$this->actionAdmin();
+
+			}
 		}
 
 		$this->render('create',array(
 			'model'=>$model,
+			'empresa'=>$empresa,
+			'exposicionActual'=>$exposicionActual,
+			'exposicionLaboral'=>$exposicionLaboral,
+			'exposicionRuidoExtra'=>$exposicionRuidoExtra,
+			'antecedentes'=>$antecedentes,
+			'antecedentesMorbidos'=>$antecedentesMorbidos,
+			'antecedentesOtologicos'=>$antecedentesOtologicos,
+			'antAudioAnter'=>$antAudioAnter
 		));
 	}
 
@@ -87,6 +171,7 @@ class PacienteController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		echo "Entro5";
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -134,6 +219,7 @@ class PacienteController extends Controller
 	public function actionAdmin()
 	{
 		$this->layout="column1";
+		echo "Entro4";
 
 		$model=new Paciente('search');
 		$model->unsetAttributes();  // clear any default values
@@ -173,5 +259,5 @@ class PacienteController extends Controller
 		}
 	}
 
-	
+
 }

@@ -5,6 +5,7 @@
  *
  * The followings are the available columns in table 'h_laboral_exp_a':
  * @property integer $id
+ * @property integer $id_empresa
  * @property string $fecha
  * @property string $base
  * @property string $seguimiento
@@ -42,12 +43,12 @@ class HLaboralExpA extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
+			array('id, id_empresa', 'numerical', 'integerOnly'=>true),
 			array('base, seguimiento, confirmacion, t_ser_empresa, sec_trabajo, exp_ruido, t_servicio, t_diar_trabajo, e_prot_auditiva, utilizacion, tipo_protector, tr_anterior_ruido, tr_ruido', 'length', 'max'=>45),
 			array('fecha', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, fecha, base, seguimiento, confirmacion, t_ser_empresa, sec_trabajo, exp_ruido, t_servicio, t_diar_trabajo, e_prot_auditiva, utilizacion, tipo_protector, tr_anterior_ruido, tr_ruido', 'safe', 'on'=>'search'),
+			array('id, id_empresa, fecha, base, seguimiento, confirmacion, t_ser_empresa, sec_trabajo, exp_ruido, t_servicio, t_diar_trabajo, e_prot_auditiva, utilizacion, tipo_protector, tr_anterior_ruido, tr_ruido', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -70,20 +71,21 @@ class HLaboralExpA extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'id_empresa' => 'Id Empresa',
 			'fecha' => 'Fecha',
 			'base' => 'Base',
 			'seguimiento' => 'Seguimiento',
 			'confirmacion' => 'Confirmacion',
-			't_ser_empresa' => 'T Ser Empresa',
-			'sec_trabajo' => 'Sec Trabajo',
-			'exp_ruido' => 'Exp Ruido',
-			't_servicio' => 'T Servicio',
-			't_diar_trabajo' => 'T Diar Trabajo',
-			'e_prot_auditiva' => 'E Prot Auditiva',
+			't_ser_empresa' => 'Tiempo de  Servicio la Empresa',
+			'sec_trabajo' => 'Seccion en la que trabaja actualmente',
+			'exp_ruido' => 'Expuesto a ruido',
+			't_servicio' => 'Tiempo de servicio en la seccion',
+			't_diar_trabajo' => 'Tiempo diario de Trabajo',
+			'e_prot_auditiva' => 'Elementos de proteccion auditiva',
 			'utilizacion' => 'Utilizacion',
 			'tipo_protector' => 'Tipo Protector',
-			'tr_anterior_ruido' => 'Tr Anterior Ruido',
-			'tr_ruido' => 'Tr Ruido',
+			'tr_anterior_ruido' => 'He tenido trabajos anteriores con ruido',
+			'tr_ruido' => 'Trabajo con Ruido',
 		);
 	}
 
@@ -106,6 +108,7 @@ class HLaboralExpA extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('id_empresa',$this->id_empresa);
 		$criteria->compare('fecha',$this->fecha,true);
 		$criteria->compare('base',$this->base,true);
 		$criteria->compare('seguimiento',$this->seguimiento,true);
