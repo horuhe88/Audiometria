@@ -116,12 +116,12 @@ class PacienteController extends Controller
 				$empresa->save();
 
 				$exposicionActual->attributes=$_POST['HLaboralExpA'];
-				$exposicionActual->id_empresa = $empresa->id;
+				$exposicionActual->id_empresa = $empresa->$id;
 				$exposicionActual->fecha = date("y-m-d");
 				$exposicionActual->save();
 
 				$exposicionLaboral->attributes=$_POST['ExpLabOtotoxicos'];
-				$exposicionLaboral->id_empresa = $empresa->id;
+				$exposicionLaboral->id_empresa = $empresa->$id;
 				$exposicionLaboral->save();
 
 				$exposicionRuidoExtra->attributes=$_POST['ExRuidoELaboral'];
@@ -180,7 +180,7 @@ class PacienteController extends Controller
 		{
 			$model->attributes=$_POST['Paciente'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('view','id'=>$model->$id));
 		}
 
 		$this->render('update',array(
