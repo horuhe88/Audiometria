@@ -11,9 +11,6 @@
  * @property string $lugar_examen
  * @property string $exa_audio_complemen
  * @property string $observaciones
- *
- * The followings are the available model relations:
- * @property Paciente $id0
  */
 class AntAudioAnter extends CActiveRecord
 {
@@ -33,8 +30,7 @@ class AntAudioAnter extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
+			array('id_Paciente', 'numerical', 'integerOnly'=>true),
 			array('resultado, lugar_examen, exa_audio_complemen, observaciones', 'length', 'max'=>45),
 			array('fecha_examen', 'safe'),
 			// The following rule is used by search().
@@ -51,7 +47,6 @@ class AntAudioAnter extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Paciente', 'id'),
 		);
 	}
 
@@ -65,8 +60,8 @@ class AntAudioAnter extends CActiveRecord
 			'id_Paciente' => 'Id Paciente',
 			'fecha_examen' => 'Fecha Examen',
 			'resultado' => 'Resultado',
-			'lugar_examen' => 'Lugar donde se efectuo el examen',
-			'exa_audio_complemen' => 'Otros examenes audiologicos complementarios si corresponde',
+			'lugar_examen' => 'Lugar Examen',
+			'exa_audio_complemen' => 'Exa Audio Complemen',
 			'observaciones' => 'Observaciones',
 		);
 	}

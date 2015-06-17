@@ -16,10 +16,13 @@
  * @property string $num_cigarrillos_dia
  * @property string $alcohol
  * @property string $emf_afec_otica
+ * @property string $trau_craneal
+ * @property string $paperas
+ * @property string $tuberc_pulmonar
+ * @property string $sarampion
+ * @property string $rubeola
+ * @property string $fi_tifoidea
  * @property string $inter_quirurgica
- *
- * The followings are the available model relations:
- * @property Paciente $id0
  */
 class AntPersonales extends CActiveRecord
 {
@@ -39,12 +42,11 @@ class AntPersonales extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_Pacientes', 'numerical', 'integerOnly'=>true),
-			array('trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'length', 'max'=>45),
+			array('id_Pacientes', 'numerical', 'integerOnly'=>true),
+			array('trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, trau_craneal, paperas, tuberc_pulmonar, sarampion, rubeola, fi_tifoidea, inter_quirurgica', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_Pacientes, trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, inter_quirurgica', 'safe', 'on'=>'search'),
+			array('id, id_Pacientes, trat_farmacologico, trat_atuberculosis, trat_aglucosidos, dosis, enf_ORL, detallar, fumador, num_cigarrillos_dia, alcohol, emf_afec_otica, trau_craneal, paperas, tuberc_pulmonar, sarampion, rubeola, fi_tifoidea, inter_quirurgica', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +58,6 @@ class AntPersonales extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Paciente', 'id'),
 		);
 	}
 
@@ -68,17 +69,23 @@ class AntPersonales extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_Pacientes' => 'Id Pacientes',
-			'trat_farmacologico' => 'Tratamiento Farmacologico',
-			'trat_atuberculosis' => 'Tratamiento con antituberculosos',
-			'trat_aglucosidos' => 'Tratamiento con Aminoglucosidos',
+			'trat_farmacologico' => 'Trat Farmacologico',
+			'trat_atuberculosis' => 'Trat Atuberculosis',
+			'trat_aglucosidos' => 'Trat Aglucosidos',
 			'dosis' => 'Dosis',
-			'enf_ORL' => 'Enfermedades diagnosticadas por ORL',
+			'enf_ORL' => 'Enf Orl',
 			'detallar' => 'Detallar',
 			'fumador' => 'Fumador',
-			'num_cigarrillos_dia' => 'N° Cigarrillos/Dia',
+			'num_cigarrillos_dia' => 'Num Cigarrillos Dia',
 			'alcohol' => 'Alcohol',
-			'emf_afec_otica' => 'Enfermedades generales padecidas con posible afeccion otica',
-			'inter_quirurgica' => 'Intervención Quirurgica',
+			'emf_afec_otica' => 'Emf Afec Otica',
+			'trau_craneal' => 'Trau Craneal',
+			'paperas' => 'Paperas',
+			'tuberc_pulmonar' => 'Tuberc Pulmonar',
+			'sarampion' => 'Sarampion',
+			'rubeola' => 'Rubeola',
+			'fi_tifoidea' => 'Fi Tifoidea',
+			'inter_quirurgica' => 'Inter Quirurgica',
 		);
 	}
 
@@ -112,6 +119,12 @@ class AntPersonales extends CActiveRecord
 		$criteria->compare('num_cigarrillos_dia',$this->num_cigarrillos_dia,true);
 		$criteria->compare('alcohol',$this->alcohol,true);
 		$criteria->compare('emf_afec_otica',$this->emf_afec_otica,true);
+		$criteria->compare('trau_craneal',$this->trau_craneal,true);
+		$criteria->compare('paperas',$this->paperas,true);
+		$criteria->compare('tuberc_pulmonar',$this->tuberc_pulmonar,true);
+		$criteria->compare('sarampion',$this->sarampion,true);
+		$criteria->compare('rubeola',$this->rubeola,true);
+		$criteria->compare('fi_tifoidea',$this->fi_tifoidea,true);
 		$criteria->compare('inter_quirurgica',$this->inter_quirurgica,true);
 
 		return new CActiveDataProvider($this, array(

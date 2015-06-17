@@ -41,7 +41,8 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($model,'Fecha_de_nacimiento'); ?>
-		<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+		<?php echo $form->textField($model,'Fecha_de_nacimiento',array('size'=>45,'maxlength'=>45)); ?>
+<!-- 		<php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'language'=>'es',
 			'model'=>$model, 				// Model object
 			'attribute'=>'Fecha_de_nacimiento', // Attribute name
@@ -49,7 +50,7 @@
 				'dateFormat'=>'yy-mm-dd'
 			), 			// jquery plugin options
 			'htmlOptions'=>array('readonly'=>true) // HTML options
-		)); ?>
+		)); ?> -->
 		<?php echo $form->error($model,'Fecha_de_nacimiento'); ?>
 	</div>
 
@@ -83,9 +84,9 @@
 		<?php echo $form->error($model,'Procedencia'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'Fecha_Realizacion'); ?>
-		<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+<!-- 	<div class="row">
+		<php echo $form->labelEx($model,'Fecha_Realizacion'); ?>
+		<php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
 			'language'=>'es',
 			'model'=>$model, 				// Model object
 			'attribute'=>'Fecha_Realizacion', // Attribute name
@@ -94,8 +95,8 @@
 			), 			// jquery plugin options
 			'htmlOptions'=>array('readonly'=>true) // HTML options
 		)); ?>
-		<?php echo $form->error($model,'Fecha_Realizacion'); ?>
-	</div>
+		<php echo $form->error($model,'Fecha_Realizacion'); ?>
+	</div> -->
 
 
 	<h2>Identificación Empresa</h2>
@@ -493,7 +494,21 @@
 
 	<div class="row">
 		<?php echo $form->labelEx($antecedentesOtologicos,'dolor'); ?>
-		<?php echo $form->checkBoxList($antecedentesOtologicos,'dolor',array(
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_continuo', array('label' => 'Option one is this and that—be sure to include why it\'s great')); ?>
+		<?php echo $form->labelEx($model, 'dolor continuo'); ?>
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_permanente'); ?>
+		<?php echo $form->labelEx($model, 'dolor permanente'); ?>
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_superficial');?>
+		<?php echo $form->labelEx($model, 'dolor superficial'); ?>
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_profundo');?>
+		<?php echo $form->labelEx($model, 'dolor profundo'); ?>
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_trac_pabellon');?>
+		<?php echo $form->labelEx($model, 'dolor a traccion de pabellon'); ?>
+		<?php echo $form->checkBox($antecedentesOtologicos,'d_pres_trago');?>
+		<?php echo $form->labelEx($model, 'dolor a presion trago'); ?>
+		
+
+<!-- 		<php echo $form->checkBoxList($antecedentesOtologicos,'dolor',array(
 		'continuo'=>'continuo',
 		'permanente'=>'permanente',
 		'superficial'=>'superficial',
@@ -501,7 +516,9 @@
 		'dolor a traccion del pabellon'=>'dolor a traccion del pabellon',
 		'dolor a presion trago'=>'dolor a presion trago'
 		),array('labelOptions' =>array('style' => "display: inline-block")));?>
-		<?php echo $form->error($antecedentesOtologicos,'dolor'); ?>
+		<php echo $form->error($antecedentesOtologicos,'dolor'); ?> 
+		<php echo $form->checkBox($model,'estado',  array('checked'=>'checked')); ?>
+		-->
 	</div>
 
 	<div class="row">

@@ -47,8 +47,33 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'dolor'); ?>
-		<?php echo $form->textField($model,'dolor',array('size'=>45,'maxlength'=>45)); ?>
+		<?php echo $form->label($model,'d_continuo'); ?>
+		<?php echo $form->textField($model,'d_continuo',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'d_permanente'); ?>
+		<?php echo $form->textField($model,'d_permanente',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'d_superficial'); ?>
+		<?php echo $form->textField($model,'d_superficial',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'d_profundo'); ?>
+		<?php echo $form->textField($model,'d_profundo',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'d_trac_pabellon'); ?>
+		<?php echo $form->textField($model,'d_trac_pabellon',array('size'=>45,'maxlength'=>45)); ?>
+	</div>
+
+	<div class="row">
+		<?php echo $form->label($model,'d_pres_trago'); ?>
+		<?php echo $form->textField($model,'d_pres_trago',array('size'=>45,'maxlength'=>45)); ?>
 	</div>
 
 	<div class="row">

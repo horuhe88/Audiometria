@@ -41,6 +41,7 @@
  * @property integer $ODer8000
  * @property integer $AIzq8000
  * @property integer $OIzq8000
+ * @property double $nvl_exp_ruido
  */
 class Diagnostico extends CActiveRecord
 {
@@ -61,11 +62,12 @@ class Diagnostico extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('ADer250, ODer250, AIzq250, OIzq250, ADer500, ODer500, AIzq500, OIzq500, ADer1000, ODer1000, AIzq1000, OIzq1000, ADer2000, ODer2000, AIzq2000, OIzq2000, ADer3000, ODer3000, AIzq3000, OIzq3000, ADer4000, ODer4000, AIzq4000, OIzq4000, ADer6000, ODer6000, AIzq6000, OIzq6000, ADer8000, ODer8000, AIzq8000, OIzq8000', 'numerical', 'integerOnly'=>true),
+			array('nvl_exp_ruido', 'numerical'),
 			array('idf_diag_evaluador, id_paciente, id_usuario', 'length', 'max'=>45),
 			array('fecha', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, idf_diag_evaluador, id_paciente, id_usuario, fecha, ADer250, ODer250, AIzq250, OIzq250, ADer500, ODer500, AIzq500, OIzq500, ADer1000, ODer1000, AIzq1000, OIzq1000, ADer2000, ODer2000, AIzq2000, OIzq2000, ADer3000, ODer3000, AIzq3000, OIzq3000, ADer4000, ODer4000, AIzq4000, OIzq4000, ADer6000, ODer6000, AIzq6000, OIzq6000, ADer8000, ODer8000, AIzq8000, OIzq8000', 'safe', 'on'=>'search'),
+			array('id, idf_diag_evaluador, id_paciente, id_usuario, fecha, ADer250, ODer250, AIzq250, OIzq250, ADer500, ODer500, AIzq500, OIzq500, ADer1000, ODer1000, AIzq1000, OIzq1000, ADer2000, ODer2000, AIzq2000, OIzq2000, ADer3000, ODer3000, AIzq3000, OIzq3000, ADer4000, ODer4000, AIzq4000, OIzq4000, ADer6000, ODer6000, AIzq6000, OIzq6000, ADer8000, ODer8000, AIzq8000, OIzq8000, nvl_exp_ruido', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -91,38 +93,39 @@ class Diagnostico extends CActiveRecord
 			'id_paciente' => 'Id Paciente',
 			'id_usuario' => 'Id Usuario',
 			'fecha' => 'Fecha',
-			'ADer250' => 'Frecuencia 250',
-			'ODer250' => 'Frecuencia 250',
-			'AIzq250' => 'Frecuencia 250',
-			'OIzq250' => 'Frecuencia 250',
-			'ADer500' => 'Frecuencia 500',
-			'ODer500' => 'Frecuencia 500',
-			'AIzq500' => 'Frecuencia 500',
-			'OIzq500' => 'Frecuencia 500',
-			'ADer1000' => 'Frecuencia 1000',
-			'ODer1000' => 'Frecuencia 1000',
-			'AIzq1000' => 'Frecuencia 1000',
-			'OIzq1000' => 'Frecuencia 1000',
-			'ADer2000' => 'Frecuencia 2000',
-			'ODer2000' => 'Frecuencia 2000',
-			'AIzq2000' => 'Frecuencia 2000',
-			'OIzq2000' => 'Frecuencia 2000',
-			'ADer3000' => 'Frecuencia 3000',
-			'ODer3000' => 'Frecuencia 3000',
-			'AIzq3000' => 'Frecuencia 3000',
-			'OIzq3000' => 'Frecuencia 3000',
-			'ADer4000' => 'Frecuencia 4000',
-			'ODer4000' => 'Frecuencia 4000',
-			'AIzq4000' => 'Frecuencia 4000',
-			'OIzq4000' => 'Frecuencia 4000',
-			'ADer6000' => 'Frecuencia 6000',
-			'ODer6000' => 'Frecuencia 6000',
-			'AIzq6000' => 'Frecuencia 6000',
-			'OIzq6000' => 'Frecuencia 6000',
-			'ADer8000' => 'Frecuencia 8000',
-			'ODer8000' => 'Frecuencia 8000',
-			'AIzq8000' => 'Frecuencia 8000',
-			'OIzq8000' => 'Frecuencia 8000',
+			'ADer250' => 'Ader250',
+			'ODer250' => 'Oder250',
+			'AIzq250' => 'Aizq250',
+			'OIzq250' => 'Oizq250',
+			'ADer500' => 'Ader500',
+			'ODer500' => 'Oder500',
+			'AIzq500' => 'Aizq500',
+			'OIzq500' => 'Oizq500',
+			'ADer1000' => 'Ader1000',
+			'ODer1000' => 'Oder1000',
+			'AIzq1000' => 'Aizq1000',
+			'OIzq1000' => 'Oizq1000',
+			'ADer2000' => 'Ader2000',
+			'ODer2000' => 'Oder2000',
+			'AIzq2000' => 'Aizq2000',
+			'OIzq2000' => 'Oizq2000',
+			'ADer3000' => 'Ader3000',
+			'ODer3000' => 'Oder3000',
+			'AIzq3000' => 'Aizq3000',
+			'OIzq3000' => 'Oizq3000',
+			'ADer4000' => 'Ader4000',
+			'ODer4000' => 'Oder4000',
+			'AIzq4000' => 'Aizq4000',
+			'OIzq4000' => 'Oizq4000',
+			'ADer6000' => 'Ader6000',
+			'ODer6000' => 'Oder6000',
+			'AIzq6000' => 'Aizq6000',
+			'OIzq6000' => 'Oizq6000',
+			'ADer8000' => 'Ader8000',
+			'ODer8000' => 'Oder8000',
+			'AIzq8000' => 'Aizq8000',
+			'OIzq8000' => 'Oizq8000',
+			'nvl_exp_ruido' => 'Nvl Exp Ruido',
 		);
 	}
 
@@ -181,6 +184,7 @@ class Diagnostico extends CActiveRecord
 		$criteria->compare('ODer8000',$this->ODer8000);
 		$criteria->compare('AIzq8000',$this->AIzq8000);
 		$criteria->compare('OIzq8000',$this->OIzq8000);
+		$criteria->compare('nvl_exp_ruido',$this->nvl_exp_ruido);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

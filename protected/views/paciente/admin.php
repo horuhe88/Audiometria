@@ -52,7 +52,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'Cedula',
 		'Nombre_Apellido',
 		'Fecha_de_nacimiento',
-		'Sexo',
 		'Telefono',
 		/*
 		'Barrio',
@@ -64,7 +63,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 			'class'=>'CButtonColumn',
 			//Se agrega el adddiagnostico al lado de los iconos de historia y diagnostico
 			//'template'=>'{historia}{diagnostico}{adddiagnostico}',
-			'template'=>'{historia}{diagnostico}',
+			'template'=>'{historia}{diagnostico}{delete}',
 			'buttons'=>array(
 					'historia' => array(
 						'label'=>"Historia Clinica",
@@ -78,6 +77,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 						'url'=>'Yii::app()->createUrl("diagnostico/adminPaciente",array("id"=>$data->id))',
 
 					),
+					'delete' => array(
+						'label'=>"Eliminar",
+						'url'=>'Yii::app()->createUrl("paciente/deletepaciente",array("id"=>$data->id))',
+
+					)
+
 					//Icono de oreja con + para agregar diagnostico
 /*					'adddiagnostico' => array(
 						'label'=>"Agregar Diagnostico",

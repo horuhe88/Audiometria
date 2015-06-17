@@ -14,9 +14,10 @@
  * @property string $arma_fuego
  * @property string $otro
  * @property string $frec_exposicion
- *
- * The followings are the available model relations:
- * @property Paciente $id0
+ * @property string $diaria
+ * @property string $semanal
+ * @property string $mensual
+ * @property string $otra_exp
  */
 class ExRuidoELaboral extends CActiveRecord
 {
@@ -36,12 +37,11 @@ class ExRuidoELaboral extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_Paciente', 'numerical', 'integerOnly'=>true),
-			array('tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion', 'length', 'max'=>45),
+			array('id_Paciente', 'numerical', 'integerOnly'=>true),
+			array('tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion, diaria, semanal, mensual, otra_exp', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_Paciente, tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion', 'safe', 'on'=>'search'),
+			array('id, id_Paciente, tipo, discoteca, casa, motociclismo, rep_musica, arma_fuego, otro, frec_exposicion, diaria, semanal, mensual, otra_exp', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,7 +53,6 @@ class ExRuidoELaboral extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Paciente', 'id'),
 		);
 	}
 
@@ -69,10 +68,14 @@ class ExRuidoELaboral extends CActiveRecord
 			'discoteca' => 'Discoteca',
 			'casa' => 'Casa',
 			'motociclismo' => 'Motociclismo',
-			'rep_musica' => 'Reproductor de audio personal',
-			'arma_fuego' => 'Armas de Fuego',
+			'rep_musica' => 'Rep Musica',
+			'arma_fuego' => 'Arma Fuego',
 			'otro' => 'Otro',
-			'frec_exposicion' => 'Frecuencia Exposicion',
+			'frec_exposicion' => 'Frec Exposicion',
+			'diaria' => 'Diaria',
+			'semanal' => 'Semanal',
+			'mensual' => 'Mensual',
+			'otra_exp' => 'Otra Exp',
 		);
 	}
 
@@ -104,6 +107,10 @@ class ExRuidoELaboral extends CActiveRecord
 		$criteria->compare('arma_fuego',$this->arma_fuego,true);
 		$criteria->compare('otro',$this->otro,true);
 		$criteria->compare('frec_exposicion',$this->frec_exposicion,true);
+		$criteria->compare('diaria',$this->diaria,true);
+		$criteria->compare('semanal',$this->semanal,true);
+		$criteria->compare('mensual',$this->mensual,true);
+		$criteria->compare('otra_exp',$this->otra_exp,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

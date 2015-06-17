@@ -32,12 +32,8 @@ class PacienteController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update', 'admin', 'delete', 'deletepaciente'),
 				'users'=>array('@'),
-			),
-			array('allow', // allow admin user to perform 'admin' and 'delete' actions
-				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
@@ -83,7 +79,7 @@ class PacienteController extends Controller
 	public function actionCreate()
 	{
 		$this->layout="column1";
-		echo "Entro1";
+		
 
 		$model=new Paciente;
 		$empresa = new IdentEmpresa;
@@ -111,37 +107,37 @@ class PacienteController extends Controller
 				echo "Entro3";
 
 				$empresa->attributes=$_POST['IdentEmpresa'];
-				$empresa->id_Paciente = $model->$id;
+				$empresa->id_Paciente = $model->id;
 				$empresa->Fecha = date("y-m-d");
 				$empresa->save();
 
 				$exposicionActual->attributes=$_POST['HLaboralExpA'];
-				$exposicionActual->id_empresa = $empresa->$id;
+				$exposicionActual->id_empresa = $empresa->id;
 				$exposicionActual->fecha = date("y-m-d");
 				$exposicionActual->save();
 
 				$exposicionLaboral->attributes=$_POST['ExpLabOtotoxicos'];
-				$exposicionLaboral->id_empresa = $empresa->$id;
+				$exposicionLaboral->id_empresa = $empresa->id;
 				$exposicionLaboral->save();
 
 				$exposicionRuidoExtra->attributes=$_POST['ExRuidoELaboral'];
-				$exposicionRuidoExtra->id_Paciente = $model->$id;
+				$exposicionRuidoExtra->id_Paciente = $model->id;
 				$exposicionRuidoExtra->save();
 
 				$antecedentes->attributes=$_POST['AntPersonales'];
-				$antecedentes->id_Pacientes=$model->$id;
+				$antecedentes->id_Pacientes=$model->id;
 				$antecedentes->save();
 
 				$antecedentesMorbidos->attributes=$_POST['AntMorbidos'];
-				$antecedentesMorbidos->id_Pacientes = $model->$id;
+				$antecedentesMorbidos->id_Pacientes = $model->id;
 				$antecedentesMorbidos->save();
 
 				$antecedentesOtologicos->attributes=$_POST['AntOtologicos'];
-				$antecedentesOtologicos->id_Paciente = $model->$id;
+				$antecedentesOtologicos->id_Paciente = $model->id;
 				$antecedentesOtologicos->save();
 
 				$antAudioAnter->attributes=$_POST['AntAudioAnter'];
-				$antAudioAnter->id_Paciente = $model->$id;
+				$antAudioAnter->id_Paciente = $model->id;
 				$antAudioAnter->save();
 
 
@@ -195,11 +191,32 @@ class PacienteController extends Controller
 	 */
 	public function actionDelete($id)
 	{
-		$this->loadModel($id)->delete();
+		//$this->loadModel($id)->delete();
 
-		// if AJAX request (triggered by deletion via admin grid view), we should not redirect the browser
-		if(!isset($_GET['ajax']))
-			$this->redirect(isset($_POST['returnUrl']) ? $_POST['returnUrl'] : array('admin'));
+		/*echo "id = ".$id;	
+
+		$model = $this->loadModel($id);
+		$empresa = IdentEmpresa::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$exposicionActual = HLaboralExpA::model()->find('id_empresa=:id_empresa',array('id_empresa'=>$empresa->id));
+		$exposicionLaboral = ExpLabOtotoxicos::model()->find('id_empresa=:id_empresa',array('id_empresa'=>$empresa->id));
+		$exposicionRuidoExtra = ExRuidoELaboral::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$antecedentes = AntPersonales::model()->find('id_Pacientes=:id_Pacientes', array(':id_Pacientes'=>$id));
+		$antecedentesMorbidos = AntMorbidos::model()->find('id_Pacientes=:id_Pacientes', array(':id_Pacientes'=>$id));
+		$antecedentesOtologicos = AntOtologicos::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$antAudioAnter = AntAudioAnter::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+
+		
+		$antAudioAnter->delete();
+		$antecedentesOtologicos->delete();
+		$antecedentesMorbidos->delete();
+		$antecedentes->delete();
+		$exposicionRuidoExtra->delete();
+		$exposicionLaboral->delete();
+		$exposicionActual->delete();
+		$empresa->delete();
+		$model->delete();*/
+
+		//$this->actionAdmin();
 	}
 
 	/**
@@ -219,8 +236,6 @@ class PacienteController extends Controller
 	public function actionAdmin()
 	{
 		$this->layout="column1";
-		echo "Entro4";
-
 		$model=new Paciente('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Paciente']))
@@ -229,6 +244,35 @@ class PacienteController extends Controller
 		$this->render('admin',array(
 			'model'=>$model,
 		));
+	}
+
+
+	public function actionDeletepaciente($id){
+		
+
+		$model = $this->loadModel($id);
+		$empresa = IdentEmpresa::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$exposicionActual = HLaboralExpA::model()->find('id_empresa=:id_empresa',array('id_empresa'=>$empresa->id));
+		$exposicionLaboral = ExpLabOtotoxicos::model()->find('id_empresa=:id_empresa',array('id_empresa'=>$empresa->id));
+		$exposicionRuidoExtra = ExRuidoELaboral::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$antecedentes = AntPersonales::model()->find('id_Pacientes=:id_Pacientes', array(':id_Pacientes'=>$id));
+		$antecedentesMorbidos = AntMorbidos::model()->find('id_Pacientes=:id_Pacientes', array(':id_Pacientes'=>$id));
+		$antecedentesOtologicos = AntOtologicos::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));
+		$antAudioAnter = AntAudioAnter::model()->find('id_Paciente=:id_Paciente', array(':id_Paciente'=>$id));	
+
+		$antAudioAnter->delete();
+		$antecedentesOtologicos->delete();
+		$antecedentesMorbidos->delete();
+		$antecedentes->delete();
+		$exposicionRuidoExtra->delete();
+		$exposicionLaboral->delete();
+		$exposicionActual->delete();
+		$empresa->delete();
+		$model->delete();
+		$this->actionAdmin();
+
+
+	
 	}
 
 	/**

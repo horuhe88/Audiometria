@@ -7,12 +7,15 @@
  * @property integer $id
  * @property integer $id_empresa
  * @property string $sol_organicos
- * @property string $quim_industriales
+ * @property string $tolueno
+ * @property string $xileno
+ * @property string $estireno
  * @property string $otroSO
+ * @property string $quim_industriales
+ * @property string $plomo
+ * @property string $mercurio
+ * @property string $monCarbono
  * @property string $otroQI
- *
- * The followings are the available model relations:
- * @property IdentEmpresa $id0
  */
 class ExpLabOtotoxicos extends CActiveRecord
 {
@@ -32,12 +35,11 @@ class ExpLabOtotoxicos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_empresa', 'numerical', 'integerOnly'=>true),
-			array('sol_organicos, quim_industriales, otroSO, otroQI', 'length', 'max'=>45),
+			array('id_empresa', 'numerical', 'integerOnly'=>true),
+			array('sol_organicos, tolueno, xileno, estireno, otroSO, quim_industriales, plomo, mercurio, monCarbono, otroQI', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, id_empresa, sol_organicos, quim_industriales, otroSO, otroQI', 'safe', 'on'=>'search'),
+			array('id, id_empresa, sol_organicos, tolueno, xileno, estireno, otroSO, quim_industriales, plomo, mercurio, monCarbono, otroQI', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -49,7 +51,6 @@ class ExpLabOtotoxicos extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'IdentEmpresa', 'id'),
 		);
 	}
 
@@ -61,10 +62,16 @@ class ExpLabOtotoxicos extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_empresa' => 'Id Empresa',
-			'sol_organicos' => 'Solventes Organicos',
-			'quim_industriales' => 'Quimicos Industriales',
-			'otroSO' => 'Otro',
-			'otroQI' => 'Otro',
+			'sol_organicos' => 'Sol Organicos',
+			'tolueno' => 'Tolueno',
+			'xileno' => 'Xileno',
+			'estireno' => 'Estireno',
+			'otroSO' => 'Otro So',
+			'quim_industriales' => 'Quim Industriales',
+			'plomo' => 'Plomo',
+			'mercurio' => 'Mercurio',
+			'monCarbono' => 'Mon Carbono',
+			'otroQI' => 'Otro Qi',
 		);
 	}
 
@@ -89,8 +96,14 @@ class ExpLabOtotoxicos extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('id_empresa',$this->id_empresa);
 		$criteria->compare('sol_organicos',$this->sol_organicos,true);
-		$criteria->compare('quim_industriales',$this->quim_industriales,true);
+		$criteria->compare('tolueno',$this->tolueno,true);
+		$criteria->compare('xileno',$this->xileno,true);
+		$criteria->compare('estireno',$this->estireno,true);
 		$criteria->compare('otroSO',$this->otroSO,true);
+		$criteria->compare('quim_industriales',$this->quim_industriales,true);
+		$criteria->compare('plomo',$this->plomo,true);
+		$criteria->compare('mercurio',$this->mercurio,true);
+		$criteria->compare('monCarbono',$this->monCarbono,true);
 		$criteria->compare('otroQI',$this->otroQI,true);
 
 		return new CActiveDataProvider($this, array(

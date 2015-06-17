@@ -20,9 +20,6 @@
  * @property string $tipo_protector
  * @property string $tr_anterior_ruido
  * @property string $tr_ruido
- *
- * The followings are the available model relations:
- * @property IdentEmpresa $id0
  */
 class HLaboralExpA extends CActiveRecord
 {
@@ -42,8 +39,7 @@ class HLaboralExpA extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_empresa', 'numerical', 'integerOnly'=>true),
+			array('id_empresa', 'numerical', 'integerOnly'=>true),
 			array('base, seguimiento, confirmacion, t_ser_empresa, sec_trabajo, exp_ruido, t_servicio, t_diar_trabajo, e_prot_auditiva, utilizacion, tipo_protector, tr_anterior_ruido, tr_ruido', 'length', 'max'=>45),
 			array('fecha', 'safe'),
 			// The following rule is used by search().
@@ -60,7 +56,6 @@ class HLaboralExpA extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'IdentEmpresa', 'id'),
 		);
 	}
 
@@ -76,16 +71,16 @@ class HLaboralExpA extends CActiveRecord
 			'base' => 'Base',
 			'seguimiento' => 'Seguimiento',
 			'confirmacion' => 'Confirmacion',
-			't_ser_empresa' => 'Tiempo de  Servicio la Empresa',
-			'sec_trabajo' => 'Seccion en la que trabaja actualmente',
-			'exp_ruido' => 'Expuesto a ruido',
-			't_servicio' => 'Tiempo de servicio en la seccion',
-			't_diar_trabajo' => 'Tiempo diario de Trabajo',
-			'e_prot_auditiva' => 'Elementos de proteccion auditiva',
+			't_ser_empresa' => 'T Ser Empresa',
+			'sec_trabajo' => 'Sec Trabajo',
+			'exp_ruido' => 'Exp Ruido',
+			't_servicio' => 'T Servicio',
+			't_diar_trabajo' => 'T Diar Trabajo',
+			'e_prot_auditiva' => 'E Prot Auditiva',
 			'utilizacion' => 'Utilizacion',
 			'tipo_protector' => 'Tipo Protector',
-			'tr_anterior_ruido' => 'He tenido trabajos anteriores con ruido',
-			'tr_ruido' => 'Trabajo con Ruido',
+			'tr_anterior_ruido' => 'Tr Anterior Ruido',
+			'tr_ruido' => 'Tr Ruido',
 		);
 	}
 

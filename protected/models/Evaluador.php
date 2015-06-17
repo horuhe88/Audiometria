@@ -8,9 +8,6 @@
  * @property string $nombre
  * @property string $usuario
  * @property string $password
- *
- * The followings are the available model relations:
- * @property Paciente $id0
  */
 class Evaluador extends CActiveRecord
 {
@@ -30,8 +27,6 @@ class Evaluador extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id', 'numerical', 'integerOnly'=>true),
 			array('nombre, usuario, password', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -47,7 +42,6 @@ class Evaluador extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Paciente', 'id'),
 		);
 	}
 

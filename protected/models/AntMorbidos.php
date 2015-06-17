@@ -14,9 +14,6 @@
  * @property string $enf_renal
  * @property string $trauma_ac_agudo
  * @property string $vibraciones
- *
- * The followings are the available model relations:
- * @property Paciente $id0
  */
 class AntMorbidos extends CActiveRecord
 {
@@ -36,8 +33,7 @@ class AntMorbidos extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id', 'required'),
-			array('id, id_Pacientes', 'numerical', 'integerOnly'=>true),
+			array('id_Pacientes', 'numerical', 'integerOnly'=>true),
 			array('hip_arterial, hip_colesterolemia, hipotiroidismo, barotrauma, diab_mellitus, enf_renal, trauma_ac_agudo, vibraciones', 'length', 'max'=>45),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -53,7 +49,6 @@ class AntMorbidos extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'id0' => array(self::BELONGS_TO, 'Paciente', 'id'),
 		);
 	}
 
@@ -65,13 +60,13 @@ class AntMorbidos extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'id_Pacientes' => 'Id Pacientes',
-			'hip_arterial' => 'Hipertension Arterial',
-			'hip_colesterolemia' => 'Hipercolesterolemia',
+			'hip_arterial' => 'Hip Arterial',
+			'hip_colesterolemia' => 'Hip Colesterolemia',
 			'hipotiroidismo' => 'Hipotiroidismo',
 			'barotrauma' => 'Barotrauma',
-			'diab_mellitus' => 'Diabetes Mellitus',
-			'enf_renal' => 'Enfermedad Renal',
-			'trauma_ac_agudo' => 'Traumatismo Acustico Agudo',
+			'diab_mellitus' => 'Diab Mellitus',
+			'enf_renal' => 'Enf Renal',
+			'trauma_ac_agudo' => 'Trauma Ac Agudo',
 			'vibraciones' => 'Vibraciones',
 		);
 	}

@@ -16,15 +16,6 @@
  * @property string $Ocupacion
  * @property string $Procedencia
  * @property string $Fecha_Realizacion
- *
- * The followings are the available model relations:
- * @property AntAudioAnter $antAudioAnter
- * @property AntMorbidos $antMorbidos
- * @property AntOtologicos $antOtologicos
- * @property AntPersonales $antPersonales
- * @property Evaluador $evaluador
- * @property ExRuidoELaboral $exRuidoELaboral
- * @property IdentEmpresa $identEmpresa
  */
 class Paciente extends CActiveRecord
 {
@@ -60,13 +51,6 @@ class Paciente extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'antAudioAnter' => array(self::HAS_ONE, 'AntAudioAnter', 'id'),
-			'antMorbidos' => array(self::HAS_ONE, 'AntMorbidos', 'id'),
-			'antOtologicos' => array(self::HAS_ONE, 'AntOtologicos', 'id'),
-			'antPersonales' => array(self::HAS_ONE, 'AntPersonales', 'id'),
-			'evaluador' => array(self::HAS_ONE, 'Evaluador', 'id'),
-			'exRuidoELaboral' => array(self::HAS_ONE, 'ExRuidoELaboral', 'id'),
-			'identEmpresa' => array(self::HAS_ONE, 'IdentEmpresa', 'id'),
 		);
 	}
 

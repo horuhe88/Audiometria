@@ -284,15 +284,20 @@ function setConvetion(img){
             <img  src="http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png" onclick="setConvetion('http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png')"/>
             </div>
 
-            <h1>Promedio de Perdida:</h1>
-            <pre><H1><?php echo $prompe2; ?></h1></pre>
-            <pre><H1><?php echo $grade2; ?></h1></pre>
-            <pre><H1><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
-            <pre><H1><?php echo $gapD; ?></h1></pre>
-            <pre><H1><?php echo 'val < de 20(cgd): '.$probd; ?></h1></pre>
-            <pre><H1><?php echo "<PRE>";
+            <h1> <font face="small fonts">Promedio de Perdida:</h1>
+            <pre><h1><font size=5.5 face="Comic Sans MS"><?php echo  $prompe2; ?></h1></pre>
+            <h1>Grado:</h1>
+            <pre><h1><font size=5.5 face="times new roman"><?php echo $grade2; ?></h1></pre>
+            <h1>Valor GAP:</h1>
+            <pre><h1><font size=5.5 face="courier new"><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
+            <h1>Tipo:</h1>
+            <pre><h1><font size=5.5 face="courier"><?php echo $gapD; ?></h1></pre>
+            <pre><h1><font size=5.5 face="roman"><?php echo 'val < de 20(cgd): '.$probd; ?></h1></pre>
+
+            <!-- PARA IMPRIMIR UN ARRAY -->
+<!--             <pre><h1><php echo "<PRE>";
             var_dump($difD);
-            echo "</PRE>"; ?></h1></pre>
+            echo "</PRE>"; ?></h1></pre> -->
      </td>
 
      <td style="width:5%">  </td>
@@ -310,20 +315,25 @@ function setConvetion(img){
             </div>
 
             <h1>Promedio de Perdida:</h1> 
-            <pre><H1><?php echo $prompe; ?></h1></pre> 
-            <pre><H1><?php echo $grade; ?></h1></pre>
-            <pre><H1><?php echo 'val gap(cd): '.$c; ?></h1></pre>
-            <pre><H1><?php echo $gapI; ?></h1></pre>
-            <pre><H1><?php echo 'val < de 20(cgd): '.$prob; ?></h1></pre>
-
-            <pre><H1><?php echo "<PRE>";
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $prompe; ?></h1></pre> 
+            <h1>Grado:</h1>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $grade; ?></h1></pre>
+            <h1>Valor GAP:</h1>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $c; ?></h1></pre>
+            <h1>Tipo:</h1>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $gapI; ?></h1></pre>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo 'val < de 20(cgd): '.$prob; ?></h1></pre>
+<!--             <pre><H1><php echo "<PRE>";
             var_dump($difI);
-            echo "</PRE>"; ?></h1></pre>
+            echo "</PRE>"; ?></h1></pre> -->
      </td>
 
     </tr>
+            <!-- <pre><h1><php echo 'Nivel de Exposición a Ruido: '.$eRuido; ?></h1></pre> -->
+
 </table>
 
+    <pre><h1><?php echo 'Nivel de Exposición a Ruido: '.$eRuido; ?></h1></pre>
 
 <?php
 	echo "<script type='text/javascript'>

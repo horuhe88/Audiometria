@@ -160,7 +160,10 @@ class DiagnosticoController extends Controller
 
 		$dataA = array();
 		$dataO = array();
+	
 		//$A = array();
+
+		$eRuido = $d[0]["nvl_exp_ruido"];
 		
 		//DATOS VIA AEREA
 		$dataA[] = $d[0]["AIzq250"];	
@@ -222,7 +225,6 @@ class DiagnosticoController extends Controller
 		$prob=0;
 		$probd=0;
 
-	
 
 		$daIzq = "".$dataA[0].",".$dataA[2].",".$dataA[4].",".$dataA[5].",".$dataA[8].",".$dataA[10].",".$dataA[12].",".$dataA[14];
 		$daDer = "".$dataA[1].",".$dataA[3].",".$dataA[5].",".$dataA[7].",".$dataA[9].",".$dataA[11].",".$dataA[13].",".$dataA[15];
@@ -236,46 +238,51 @@ class DiagnosticoController extends Controller
 			//OIDO IZQUIERDO
 			$cpar = 2 * $i;
 			$acum = $dataA[$cpar];
-			$sum1 = $sum1 + $acum;
 			
+			if ($cpar != 0 && $cpar != 12 && $cpar != 14) {
+				$sum1 = $sum1 + $acum;
+			}
 
 			//OIDO DERECHO
 			$cpar = 2 * $i + 1;
 			$acum = $dataA[$cpar];
-			$sum2 = $sum2 + $acum;
+
+			if ($cpar != 1 && $cpar != 13 && $cpar != 15) {
+				$sum2 = $sum2 + $acum;
+			}
 
 		}
 
 
-		$prompe = $sum1 / 8;
-		$prompe2 = $sum2 / 8;
+		$prompe = $sum1 / 5;
+		$prompe2 = $sum2 / 5;
 
-		if ($prompe < 25) {
+		if ($prompe <= 25.5) {
 			$grade = "Audicion Normal";
-		}elseif (26 < $prompe && $prompe < 40) {
+		}elseif (25.6 <= $prompe && $prompe <= 40.5) {
 			$grade = "Hipoacusia leve";
-		}elseif (41 < $prompe && $prompe < 55) {
+		}elseif (40.6 <= $prompe && $prompe <= 55.5) {
 			$grade = "Hipoacusia Moderada";
-		}elseif (56 < $prompe && $prompe < 70) {
+		}elseif (55.6 <= $prompe && $prompe <= 70.5) {
 			$grade = "Hipoacusia Moderada a Severa";
-		}elseif (71 < $prompe && $prompe < 90) {
+		}elseif (70.6 <= $prompe && $prompe <= 90.5) {
 			$grade = "Hipoacusia Severa";
-		}elseif (90 < $prompe) {
+		}elseif (90.6 <= $prompe) {
 			$grade = "Hipoacusia profunda";
 		}
 
 
-		if ($prompe2 < 25) {
+		if ($prompe2 <= 25.5) {
 			$grade2 = "Audicion Normal";
-		}elseif (26 < $prompe2 && $prompe2 < 40) {
+		}elseif (25.6 <= $prompe2 && $prompe2 <= 40.5) {
 			$grade2 = "Hipoacusia leve";
-		}elseif (41 < $prompe2 && $prompe2 < 55) {
+		}elseif (40.6 <= $prompe2 && $prompe2 <= 55.5) {
 			$grade2 = "Hipoacusia Moderada";
-		}elseif (56 < $prompe2 && $prompe2 < 70) {
+		}elseif (55.6 <= $prompe2 && $prompe2 <= 70.5) {
 			$grade2 = "Hipoacusia Moderada a Severa";
-		}elseif (71 < $prompe2 && $prompe2 < 90) {
+		}elseif (70.6 <= $prompe2 && $prompe2 <= 90.5) {
 			$grade2 = "Hipoacusia Severa";
-		}elseif (90 < $prompe2) {
+		}elseif (90.6 <= $prompe2) {
 			$grade2 = "Hipoacusia profunda";
 		}
 
@@ -306,12 +313,10 @@ class DiagnosticoController extends Controller
 //--------------------//------------------OIDO IZQUIERDO----------------------//---------------------------------------
 
 			if ($difI[$cpar] > 10) {
-				# code...
 				$c++;
 			}
 
 			if ($datgapOabs[$cpar]  < 20) {
-				# code...
 				$cg++;
 			}
 
@@ -332,13 +337,10 @@ class DiagnosticoController extends Controller
 //------------------//-------------------OIDO DERECHO------------------------------------------//------------------
 
 			if ($difD[$cipar] > 10) {
-				# code...
 				$cd++;
-				//echo "val men 20 : ".$difD[$cipar];
 			}
 
 			if ($datgapOabs1[$cipar]  < 20) {
-				# code...
 				$cgd++;
 			}
 
@@ -357,14 +359,70 @@ class DiagnosticoController extends Controller
 		
 		}
 
-//----------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
+
+//-------------------//----------------------ALARMA--------------------------------//----------------------------------
+
+//----------------------------------Audiometria de Seguimiento---------------------------------------------------------
+
+		$mprom =new Diagnostico();
+		// $mprom->lvl_ruido= $eRuido;
+		// $mprom->save();
+
+		$mprom=Diagnostico::model()->findAll("nvl_exp_ruido".$eRuido,array('order'=>'status DESC'));
+		//echo "Printing : ".$mprom;
+            //<pre><h1><?php echo "<PRE>";
+            var_dump($mprom);
+            //echo "</PRE>"; ></h1></pre> 
+
+
+		
+
+		// for ($e=0; $e < count($eRuido) ; $e++) { 
+		// 	$eRuido[$e];
+		// }
+
+
+		// if (80 <= $eRuido[0] && $eRuido[0] <= 82) {
+		// 	# code...
+		// 	echo "Próximo diagnostico dentro de 5 años";
+		// }elseif (82 < $eRuido[1] && $eRuido[1] <= 99) {
+		// 	# code...
+		// 	echo "Próximo diagnostico dentro de 1 año";
+		// }elseif (100<$eRuido[1]) {
+		// 	# code...
+		// 	echo "Próximo diagnostico dentro de 6 meses";
+		// }
+
+//----------------------------------Fin Audiometria de Seguimiento----------------------------------------------------
+
+		// if ($eRuido[1]< ($eRuido[1]+15)  || ($eRuido[1]-15) < $eRuido[1] ) {
+		// 	# code...
+		// 	echo "Debe hacer Audiometria de comprobación";
+		// }
+
+
+		// $mprom =new PromAlarma();
+		// $mprom->val_izq= $prompe;
+		// $mprom->val_der= $prompe2;
+		// $mprom->save();
+
+		// $mprom=PromAlarma::model()->findAll("val_izq",$prompe);
+		// $mprom=PromAlarma::model()->findAll("val_der",$prompe2);
+
+		// if (condition) {
+		// 	# code...
+		// }
+
+//-------------------//----------------------FIN ALARMA--------------------------------//----------------------------
 
 		$this->render('graph',array(
 			'id'=>$id,'prompe'=>$prompe,'prompe2'=>$prompe2,
 			'difI'=> $difI, 'difD'=> $difD,'gapI'=>$gapI,'gapD'=>$gapD,
-			'c'=>$c , 'cd'=>$cd, 'datgapOabs'=>$datgapOabs,'prob'=>$prob, 'probd'=>$probd,
-			'daIzq'=>$daIzq,'doIzq'=>$doIzq, 'daDer'=>$daDer, 'doDer'=>$doDer , 'grade' => $grade, 'grade2' => $grade2
-		));//'sel'=>$sel,
+			'c'=>$c , 'cd'=>$cd, 'datgapOabs'=>$datgapOabs,
+			'prob'=>$prob, 'probd'=>$probd,	'daIzq'=>$daIzq,'doIzq'=>$doIzq, 
+			'daDer'=>$daDer, 'doDer'=>$doDer , 'grade' => $grade, 'grade2' => $grade2, 'eRuido'=> $eRuido 
+		));
 	}
 
 

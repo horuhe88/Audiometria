@@ -94,16 +94,16 @@
 				<?php echo $form->textField($model,'ODer4000'); ?>
 				<?php echo $form->error($model,'ODer4000'); ?>
 			</div>
-			<div class="row">
-				<?php echo $form->labelEx($model,'ODer6000'); ?>
-				<?php echo $form->textField($model,'ODer6000'); ?>
-				<?php echo $form->error($model,'ODer6000'); ?>
+<!-- 			<div class="row">
+				<php echo $form->labelEx($model,'ODer6000'); ?>
+				<php echo $form->textField($model,'ODer6000'); ?>
+				<php echo $form->error($model,'ODer6000'); ?>
 			</div>
 			<div class="row">
-				<?php echo $form->labelEx($model,'ODer8000'); ?>
-				<?php echo $form->textField($model,'ODer8000'); ?>
-				<?php echo $form->error($model,'ODer8000'); ?>
-			</div>
+				<php echo $form->labelEx($model,'ODer8000'); ?>
+				<php echo $form->textField($model,'ODer8000'); ?>
+				<php echo $form->error($model,'ODer8000'); ?>
+			</div> -->
 		</td>
 
 		<td>
@@ -185,19 +185,25 @@
 				<?php echo $form->textField($model,'OIzq4000'); ?>
 				<?php echo $form->error($model,'OIzq4000'); ?>
 			</div>
-			<div class="row">
-				<?php echo $form->labelEx($model,'OIzq6000'); ?>
-				<?php echo $form->textField($model,'OIzq6000'); ?>
-				<?php echo $form->error($model,'OIzq6000'); ?>
+<!-- 			<div class="row">
+				<php echo $form->labelEx($model,'OIzq6000'); ?>
+				<php echo $form->textField($model,'OIzq6000'); ?>
+				<php echo $form->error($model,'OIzq6000'); ?>
 			</div>
 			<div class="row">
-				<?php echo $form->labelEx($model,'OIzq8000'); ?>
-				<?php echo $form->textField($model,'OIzq8000'); ?>
-				<?php echo $form->error($model,'OIzq8000'); ?>
-			</div>
+				<php echo $form->labelEx($model,'OIzq8000'); ?>
+				<php echo $form->textField($model,'OIzq8000'); ?>
+				<php echo $form->error($model,'OIzq8000'); ?>
+			</div> -->
 		</td>
 
 	</table>	
+
+			<div class="row">
+				<?php echo $form->labelEx($model,'Nivel de Exposición de Ruido'); ?>
+				<?php echo $form->textField($model,'nvl_exp_ruido'); ?>
+				<?php echo $form->error($model,'nvl_exp_ruido'); ?>
+			</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Guardar'); ?>
