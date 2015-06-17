@@ -106,9 +106,7 @@
 			</div> -->
 		</td>
 
-		<td>
-			<pre></pre>
-		</td>	
+		<td style="width:10%"></td>	
 
 		<td>
 			<h2>Oido Izquierdo</h2>

@@ -121,4 +121,35 @@ class Paciente extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function searchByEmpresa(){
+		$data = array();
+		$data["id"] ="2";
+		$data["nombre"] = "dario";
+		$data["dato"] = "Coso";
+
+		$dataT = array();
+		$dataT[] = $data;
+
+		$data2 = array();
+		$data2["id"] ="2";
+		$data2["nombre"] = "dario";
+		$data2["dato"] = "Coso";
+
+		$dataT[] = $data2;
+
+		return new CArrayDataProvider($dataT,
+    array(
+        'sort' => array( //optional and sortring
+            'attributes' => array(
+                'id', 
+                'nombre',
+                'dato'
+            ),
+        ),
+        'pagination' => array('pageSize' => 10) //optional add a pagination
+    )
+);		
+
+	}
 }

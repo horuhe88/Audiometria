@@ -366,11 +366,21 @@ class DiagnosticoController extends Controller
 //----------------------------------Audiometria de Seguimiento---------------------------------------------------------
 
 		$mprom =new Diagnostico();
+		$mpr =new Paciente();
 		// $mprom->lvl_ruido= $eRuido;
 		// $mprom->save();
 
-		//$mprom=Diagnostico::model()->findAll("nvl_exp_ruido".$eRuido,array('order'=>'status DESC'));
+		// $mprom=Diagnostico::model()->findAll("nvl_exp_ruido = ".$eRuido,array('order'=>'status DESC'));
+  //        echo "string".count($mprom);
 
+  //        if(count($mprom)>1){
+  //        	$noiseLast = $mprom[0]->nvl_exp_ruido;
+  //        	$noiseAntLast = $mprom[1]->nvl_exp_ruido;	
+
+  //        }else{
+
+         	
+  //        }
 
 		//echo "Printing : ".$mprom;
             //<pre><h1><?php echo "<PRE>";

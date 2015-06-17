@@ -57,8 +57,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'Barrio',
 		'Ocupacion',
 		'Procedencia',
-		'Fecha_Realizacion',
-		*/
+		'Fecha_Realizacion',*/
+		
 		array(
 			'class'=>'CButtonColumn',
 			//Se agrega el adddiagnostico al lado de los iconos de historia y diagnostico
@@ -94,3 +94,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		),
 	),
 )); ?>
+
+
+<?php/* $this->widget('zii.widgets.grid.CGridView', array(
+    'dataProvider' => $model->searchByEmpresa(),
+    'columns' => array('id', 'nombre','dato'),
+)); */?>
+

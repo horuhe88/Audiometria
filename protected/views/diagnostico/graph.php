@@ -102,7 +102,7 @@ $this->breadcrumbs=array(
             color: '#F80000',
             marker: {
 //                symbol: 'triangle'
-				  symbol: 'url(https://cdn4.iconfinder.com/data/icons/6x16-free-application-icons/16/Red_mark.png)'
+				  symbol: 'url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png)'
             },
             data: aereoA
 
@@ -186,7 +186,7 @@ $this->breadcrumbs=array(
             color: '#3E5F8A',
             marker: {
 //                symbol: 'triangle'
-                  symbol: 'url(https://cdn1.iconfinder.com/data/icons/silk2/resultset_next.png)'
+                  symbol: 'url(https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png)'
             },
             data: aereoA
 
@@ -196,7 +196,7 @@ $this->breadcrumbs=array(
             color: '#3E5F8A',
             dashStyle: 'Dash',//Estilo linea
             marker: {
-                symbol: 'circle'
+                symbol: 'url(https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png)'
             },
             data: oseoA
             }]
@@ -289,20 +289,28 @@ function setConvetion(img){
             <pre><h1><font size=5.5 face="Comic Sans MS"><?php echo  $prompe2; ?></h1></pre>
             <h1>Grado:</h1>
            <?php 
-            if ($grade2 == "Audicion Normal" ) { $bgr2 = 'green';}
+            if ($grade2 == "Audicion Normal" ) { $bgr2 = '#00FF00';}
 
-            if ($grade2 == "Hipoacusia leve" ) { $bgr2 = 'purple'; }
+            if ($grade2 == "Hipoacusia leve" ) { $bgr2 = '#00FFFF'; }
 
-            if ($grade2 == "Hipoacusia Moderada" ) { $bgr2 = 'pink'; }
+            if ($grade2 == "Hipoacusia Moderada" ) { $bgr2 = '#FF8C00'; }
 
-            if ($grade2 == "Hipoacusia Moderada a Severa" ) {$bgr2 = 'pink'; }
+            if ($grade2 == "Hipoacusia Moderada a Severa" ) {$bgr2 = '#FF1493'; }
 
-            if ($grade2 == "Hipoacusia Severa" ) { $bgr2 = 'orange'; }
+            if ($grade2 == "Hipoacusia Severa" ) { $bgr2 = 'yellow'; }
 
-            if ($grade2 == "Hipoacusia profunda" ) { $bgr2 = 'yellow'; }
-            ?>            
+            if ($grade2 == "Hipoacusia profunda" ) { $bgr2 = '#9932CC'; }
+            ?>           
             <!-- <pre><h1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre> -->
             <pre body style='background-color:<?php echo $bgr2?>' ><H1><font size=5.5 face="times new roman"><?php echo $grade2; ?></h1></pre>
+
+<!--             <pre body style='background-color:<php echo '#00FF00'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
+            <pre body style='background-color:<php echo '#00FFFF'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
+            <pre body style='background-color:<php echo '#FF8C00'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
+            <pre body style='background-color:<php echo '#FF1493'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
+            <pre body style='background-color:<php echo 'yellow'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
+            <pre body style='background-color:<php echo '#9932CC'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre> -->
+
             <h1>Valor GAP:</h1>
             <pre><h1><font size=5.5 face="courier new"><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
             <h1>Tipo:</h1>
@@ -333,17 +341,17 @@ function setConvetion(img){
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $prompe; ?></h1></pre> 
             <h1>Grado:</h1>
            <?php 
-            if ($grade == "Audicion Normal" ) { $bgr = 'green';}
+            if ($grade == "Audicion Normal" ) { $bgr = '#00FF00';}
 
-            if ($grade == "Hipoacusia leve" ) { $bgr = 'purple'; }
+            if ($grade == "Hipoacusia leve" ) { $bgr = '#00FFFF'; }
 
-            if ($grade == "Hipoacusia Moderada" ) { $bgr = 'pink'; }
+            if ($grade == "Hipoacusia Moderada" ) { $bgr = '#FF8C00'; }
 
-            if ($grade == "Hipoacusia Moderada a Severa" ) {$bgr = 'pink'; }
+            if ($grade == "Hipoacusia Moderada a Severa" ) {$bgr = '#FF1493'; }
 
-            if ($grade == "Hipoacusia Severa" ) { $bgr = 'orange'; }
+            if ($grade == "Hipoacusia Severa" ) { $bgr = 'yellow'; }
 
-            if ($grade == "Hipoacusia profunda" ) { $bgr = 'yellow'; }
+            if ($grade == "Hipoacusia profunda" ) { $bgr = '#9932CC'; }
             ?>
             <pre body style='background-color:<?php echo $bgr?>' ><H1><font size=5.5 face="Comic Sans MS"><?php echo $grade; ?></h1></pre>
             <!-- <pre body style='background-color:pink'><H1><font size=5.5 face="Comic Sans MS"><php echo $grade; ?></h1></pre> -->
