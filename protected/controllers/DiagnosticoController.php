@@ -369,18 +369,13 @@ class DiagnosticoController extends Controller
 		// $mprom->lvl_ruido= $eRuido;
 		// $mprom->save();
 
-		$mprom=Diagnostico::model()->findAll("nvl_exp_ruido".$eRuido,array('order'=>'status DESC'));
+		//$mprom=Diagnostico::model()->findAll("nvl_exp_ruido".$eRuido,array('order'=>'status DESC'));
+
+
 		//echo "Printing : ".$mprom;
             //<pre><h1><?php echo "<PRE>";
-            var_dump($mprom);
+            //var_dump($mprom);
             //echo "</PRE>"; ></h1></pre> 
-
-
-		
-
-		// for ($e=0; $e < count($eRuido) ; $e++) { 
-		// 	$eRuido[$e];
-		// }
 
 
 		// if (80 <= $eRuido[0] && $eRuido[0] <= 82) {

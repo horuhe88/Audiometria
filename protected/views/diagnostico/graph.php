@@ -102,14 +102,14 @@ $this->breadcrumbs=array(
             color: '#F80000',
             marker: {
 //                symbol: 'triangle'
-				  symbol: 'url(https://www.hscripts.com/freeimages/icons/arrows/left-arrow/larrow5.gif)'
+				  symbol: 'url(https://cdn4.iconfinder.com/data/icons/6x16-free-application-icons/16/Red_mark.png)'
             },
             data: aereoA
 
 
         }, {
             name: 'Oseo',
-            color: '#3E5F8A',
+            color: '#F80000',
             dashStyle: 'Dash',//Estilo linea
             marker: {
                 symbol: 'circle'
@@ -183,10 +183,10 @@ $this->breadcrumbs=array(
         },
         series: [{
             name: 'Aereo',
-            color: '#F80000',
+            color: '#3E5F8A',
             marker: {
 //                symbol: 'triangle'
-                  symbol: 'url(https://www.hscripts.com/freeimages/icons/arrows/left-arrow/larrow5.gif)'
+                  symbol: 'url(https://cdn1.iconfinder.com/data/icons/silk2/resultset_next.png)'
             },
             data: aereoA
 
@@ -277,17 +277,32 @@ function setConvetion(img){
             <div id="oidoDerecho" style="min-width: 310px; height: 400px; max-width: 450px ; margin: 0 auto"></div>
 
             <div>  
-            <img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png" width="28" height="21" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_shape_oval-32.png')"/>
-            <img  src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-left-48.png')"/>
-            <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/triangle-32.png')"/>
+            <img  src="https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png"onclick="setConvetion('https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png')"/>
+            <!-- <img  src="https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16" width="16" height="12" onclick="setConvetion('https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16')" /> -->
+            <img  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png')" />
+            <img  src="https://www.avistautilities.com/_layouts/avista/images/icons/outageRedTriangle.png" onclick="setConvetion('https://www.avistautilities.com/_layouts/avista/images/icons/outageRedTriangle.png')"/>
             <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png')"/>
-            <img  src="http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png" onclick="setConvetion('http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png')"/>
+            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/>
             </div>
 
             <h1> <font face="small fonts">Promedio de Perdida:</h1>
             <pre><h1><font size=5.5 face="Comic Sans MS"><?php echo  $prompe2; ?></h1></pre>
             <h1>Grado:</h1>
-            <pre><h1><font size=5.5 face="times new roman"><?php echo $grade2; ?></h1></pre>
+           <?php 
+            if ($grade2 == "Audicion Normal" ) { $bgr2 = 'green';}
+
+            if ($grade2 == "Hipoacusia leve" ) { $bgr2 = 'purple'; }
+
+            if ($grade2 == "Hipoacusia Moderada" ) { $bgr2 = 'pink'; }
+
+            if ($grade2 == "Hipoacusia Moderada a Severa" ) {$bgr2 = 'pink'; }
+
+            if ($grade2 == "Hipoacusia Severa" ) { $bgr2 = 'orange'; }
+
+            if ($grade2 == "Hipoacusia profunda" ) { $bgr2 = 'yellow'; }
+            ?>            
+            <!-- <pre><h1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre> -->
+            <pre body style='background-color:<?php echo $bgr2?>' ><H1><font size=5.5 face="times new roman"><?php echo $grade2; ?></h1></pre>
             <h1>Valor GAP:</h1>
             <pre><h1><font size=5.5 face="courier new"><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
             <h1>Tipo:</h1>
@@ -307,17 +322,31 @@ function setConvetion(img){
             <div id="oidoIzquierdo" style="min-width: 310px; height: 400px; max-width: 450px; margin: 0 auto"></div>
 
             <div>
-            <img  src="https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_close-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/virtual-notebook/16/button_close-32.png')">
-            <img  src="https://cdn2.iconfinder.com/data/icons/lightly-icons/24/chevron-right-48.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/lightly-icons/24/chevron-right-48.png')">
-            <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-32.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-32.png')">
+            <img  src="https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png')">
+            <img  src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png')">
+            <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-16.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-16.png')">
             <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png')">
-            <img  src="http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png" onclick="setConvetion('http://iconbug.com/data/99/64/6711b9a682000d26529418b668a1a705.png')"/>
+            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/>
             </div>
 
             <h1>Promedio de Perdida:</h1> 
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $prompe; ?></h1></pre> 
             <h1>Grado:</h1>
-            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $grade; ?></h1></pre>
+           <?php 
+            if ($grade == "Audicion Normal" ) { $bgr = 'green';}
+
+            if ($grade == "Hipoacusia leve" ) { $bgr = 'purple'; }
+
+            if ($grade == "Hipoacusia Moderada" ) { $bgr = 'pink'; }
+
+            if ($grade == "Hipoacusia Moderada a Severa" ) {$bgr = 'pink'; }
+
+            if ($grade == "Hipoacusia Severa" ) { $bgr = 'orange'; }
+
+            if ($grade == "Hipoacusia profunda" ) { $bgr = 'yellow'; }
+            ?>
+            <pre body style='background-color:<?php echo $bgr?>' ><H1><font size=5.5 face="Comic Sans MS"><?php echo $grade; ?></h1></pre>
+            <!-- <pre body style='background-color:pink'><H1><font size=5.5 face="Comic Sans MS"><php echo $grade; ?></h1></pre> -->
             <h1>Valor GAP:</h1>
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $c; ?></h1></pre>
             <h1>Tipo:</h1>
