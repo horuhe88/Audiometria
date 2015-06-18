@@ -239,7 +239,7 @@ class DiagnosticoController extends Controller
 			$cpar = 2 * $i;
 			$acum = $dataA[$cpar];
 			
-			if ($cpar != 0 && $cpar != 12 && $cpar != 14) {
+			if ($cpar != 0 && $cpar != 8 && $cpar != 12 && $cpar != 14) {
 				$sum1 = $sum1 + $acum;
 			}
 
@@ -247,15 +247,15 @@ class DiagnosticoController extends Controller
 			$cpar = 2 * $i + 1;
 			$acum = $dataA[$cpar];
 
-			if ($cpar != 1 && $cpar != 13 && $cpar != 15) {
+			if ($cpar != 1 && $cpar != 9 && $cpar != 13 && $cpar != 15) {
 				$sum2 = $sum2 + $acum;
 			}
 
 		}
 
 
-		$prompe = $sum1 / 5;
-		$prompe2 = $sum2 / 5;
+		$prompe = $sum1 / 4;
+		$prompe2 = $sum2 / 4;
 
 		if ($prompe <= 25.5) {
 			$grade = "Audicion Normal";
