@@ -19,6 +19,15 @@
  */
 class Paciente extends CActiveRecord
 {
+
+	public static $filterEmpresa;
+	
+	
+	function __construct() {
+       parent::__construct();
+       self::$filterEmpresa = new PacienteEmpresa();
+   }
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -122,29 +131,101 @@ class Paciente extends CActiveRecord
 		return parent::model($className);
 	}
 
+
+
+public function getFilterByEmpresa(){
+		return self::$filterEmpresa;
+	}
+	
+	public function setFilterEmpresa($filter){
+		self::$filterEmpresa = $filter;
+	}
+
 	public function searchByEmpresa(){
+		
+		$sql = "SELECT paciente.*,ident_empresa.Nombre_E FROM paciente,ident_empresa";
+		$where = "";
+		$cont =0;
+		
+		if(self::$filterEmpresa->cedula != null && self::$filterEmpresa->cedula != "" ){
+			$where = " paciente.Cedula='".self::$filterEmpresa->cedula."'";
+			$cont++;
+		}
+		
+		if(self::$filterEmpresa->nombre != null && self::$filterEmpresa->nombre != "" ){
+			if($cont>0)
+				$where = $where." AND";
+			$where = $where." paciente.Nombre_Apellido LIKE '%".self::$filterEmpresa->nombre."%'";
+			$cont++;
+		}
+		
+		if(self::$filterEmpresa->telefono != null && self::$filterEmpresa->telefono != "" ){
+			if($cont>0)
+				$where= $where." AND";
+			$where = $where." paciente.Telefono='".self::$filterEmpresa->telefono."'";
+			$cont++;
+		}
+		
+		if(self::$filterEmpresa->empresa != null && self::$filterEmpresa->empresa != "" ){
+			if($cont>0)
+				$where = $where." AND";
+			$where = $where." ident_empresa.Nombre_E LIKE '%".self::$filterEmpresa->empresa."%'";
+			$cont++;
+		}
+		
+		if($cont>0)
+			$sql = $sql." WHERE".$where;
+		
+		$sql = $sql." GROUP BY paciente.id ORDER BY paciente.Nombre_Apellido";
+		
+		
+		
+		$dataT = Yii::app()->db
+			->createCommand($sql)
+			->queryAll();
+		
 		$data = array();
-		$data["id"] ="2";
-		$data["nombre"] = "dario";
-		$data["dato"] = "Coso";
+		
+		foreach($dataT as $row){
+			$r = new PacienteEmpresa();
+			$r->id = $row["id"];
+			$r->cedula = $row["Cedula"];
+			$r->nombre = $row["Nombre_Apellido"];
+			$r->telefono = $row["Telefono"];
+			$r->empresa = $row["Nombre_E"];
+			$data[] = $r;
+		}
+		
+		/*$dataT = array();
+		
+		$r1 = new PacienteEmpresa();
+		$r1->id = 1;
+		$r1->cedula = "asd";
+		$r1->nombre = "dario";
+		$r1->telefono = "uju" ;
+		$r1->empresa = "sipi";
+		
+		
+		$dataT[] = $r1;
 
-		$dataT = array();
-		$dataT[] = $data;
+		$r2 = new PacienteEmpresa();
+		$r2->id = 1;
+		$r2->cedula = "asd";
+		$r2->nombre = "dario";
+		$r2->telefono = "uju" ;
+		$r2->empresa = "sipi";
 
-		$data2 = array();
-		$data2["id"] ="2";
-		$data2["nombre"] = "dario";
-		$data2["dato"] = "Coso";
+		$dataT[] = $r2;*/
 
-		$dataT[] = $data2;
-
-		return new CArrayDataProvider($dataT,
+		return new CArrayDataProvider($data,
     array(
         'sort' => array( //optional and sortring
             'attributes' => array(
-                'id', 
+				'id',
+                'cedula', 
                 'nombre',
-                'dato'
+                'telefono',
+				'empresa'
             ),
         ),
         'pagination' => array('pageSize' => 10) //optional add a pagination
@@ -152,4 +233,8 @@ class Paciente extends CActiveRecord
 );		
 
 	}
+
+
+
+	
 }

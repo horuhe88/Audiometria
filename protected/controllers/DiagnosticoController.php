@@ -364,25 +364,23 @@ class DiagnosticoController extends Controller
 //-------------------//----------------------ALARMA--------------------------------//----------------------------------
 
 //----------------------------------Audiometria de Seguimiento---------------------------------------------------------
+			$idPaciente = $d[0]["id_paciente"];
 
-		$mprom =new Diagnostico();
-		$mpr =new Paciente();
+			$sqlDiagnostico = "SELECT * FROM diagnostico WHERE id_paciente = ".$idPaciente." AND id <= ".$id." ORDER BY id DESC LIMIT 2";	
 
-		echo "esta id es de Diagnostico".$id;
-		//$idPP = $mpr->id;
-		// $mprom->lvl_ruido= $eRuido;
-		// $mprom->save();
+			$diagnosticos = Yii::app()->db
+				->createCommand($sqlDiagnostico)
+				->queryAll();
 
 
-		// $model = $this->loadModel($id);
-		// $idPaciente = $model->id_paciente;
-		// $model->delete();	
-		// if(!isset($_GET['ajax']))
-		// 	$this->redirect(array('adminPaciente','id'=>$idPaciente));
 
-		$mprom=Diagnostico::model()->findAll("id_paciente",$id);//,array("id"=>$mpr->id));
-          echo "string".count($mprom);
-			//echo "la ide es: ".$mprom;
+
+		
+
+		  // foreach($mpr as $row):
+		  // echo $row->id."_"; 
+		  // endforeach;
+
 
          // if(count($mprom)>1){
          // 	$noiseLast = $mprom[0]->nvl_exp_ruido;

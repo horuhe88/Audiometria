@@ -40,11 +40,11 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 <?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button')); ?>
 <div class="search-form" style="display:none">
 <?php $this->renderPartial('_search',array(
-	'model'=>$model,
+	'model'=>$model->getFilterByEmpresa(),
 )); ?>
 </div><!-- search-form -->
 
-<?php $this->widget('zii.widgets.grid.CGridView', array(
+<?php /*$this->widget('zii.widgets.grid.CGridView', array(
 	'id'=>'paciente-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
@@ -57,7 +57,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'Barrio',
 		'Ocupacion',
 		'Procedencia',
-		'Fecha_Realizacion',*/
+		'Fecha_Realizacion',
 		
 		array(
 			'class'=>'CButtonColumn',
@@ -82,14 +82,50 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 						'url'=>'Yii::app()->createUrl("paciente/deletepaciente",array("id"=>$data->id))',
 
 					)
+
+					//Icono de oreja con + para agregar diagnostico
+/*					'adddiagnostico' => array(
+						'label'=>"Agregar Diagnostico",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/nuevodiagnostico.png',
+						'url'=>'Yii::app()->createUrl("diagnostico/create",array("id"=>$data->id))',
+
+					),	
 			),
 		),
 	),
-)); ?>
-
-
-<?php/* $this->widget('zii.widgets.grid.CGridView', array(
-    'dataProvider' => $model->searchByEmpresa(),
-    'columns' => array('id', 'nombre','dato'),
 )); */?>
+
+
+<?php $this->widget('zii.widgets.grid.CGridView', array(
+	'id'=>'paciente-grid',
+    'dataProvider' => $model->searchByEmpresa(),
+	'filter' => $model->getFilterByEmpresa(),
+    'columns' => array('cedula', 'nombre','telefono','empresa'
+			,array(
+			'class'=>'CButtonColumn',
+			'template'=>'{historia}{diagnostico}{delete}',
+			'buttons'=>array(
+					'historia' => array(
+						'label'=>"Historia Clinica",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/historia.png',	
+						'url'=>'Yii::app()->createUrl("paciente/view",array("id"=>$data["id"]))',
+
+					),
+					'diagnostico' => array(
+						'label'=>"Diagnosticos",
+						'imageUrl'=>Yii::app()->request->baseUrl.'/images/diagnosticos.png',	
+						'url'=>'Yii::app()->createUrl("diagnostico/adminPaciente",array("id"=>$data["id"]))',
+
+					),
+					'delete' => array(
+						'label'=>"Eliminar",
+						'url'=>'Yii::app()->createUrl("paciente/deletepaciente",array("id"=>$data["id"]))',
+
+					)
+			),
+		),
+	
+	),
+	
+)); ?>
 

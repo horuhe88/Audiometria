@@ -238,11 +238,19 @@ class PacienteController extends Controller
 		$this->layout="column1";
 		$model=new Paciente('search');
 		$model->unsetAttributes();  // clear any default values
+		$modelE = new PacienteEmpresa();
+		$modelE->unsetAttributes();
 		if(isset($_GET['Paciente']))
 			$model->attributes=$_GET['Paciente'];
+		
+		if(isset($_GET['PacienteEmpresa']))
+			$modelE->attributes=$_GET['PacienteEmpresa'];
 
+		$model->setFilterEmpresa($modelE);
+		
 		$this->render('admin',array(
 			'model'=>$model,
+			
 		));
 	}
 
