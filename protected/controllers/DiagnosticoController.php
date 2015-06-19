@@ -367,22 +367,33 @@ class DiagnosticoController extends Controller
 
 		$mprom =new Diagnostico();
 		$mpr =new Paciente();
+
+		echo "esta id es de Diagnostico".$id;
+		//$idPP = $mpr->id;
 		// $mprom->lvl_ruido= $eRuido;
 		// $mprom->save();
 
-		// $mprom=Diagnostico::model()->findAll("nvl_exp_ruido = ".$eRuido,array('order'=>'status DESC'));
-  //        echo "string".count($mprom);
 
-  //        if(count($mprom)>1){
-  //        	$noiseLast = $mprom[0]->nvl_exp_ruido;
-  //        	$noiseAntLast = $mprom[1]->nvl_exp_ruido;	
+		// $model = $this->loadModel($id);
+		// $idPaciente = $model->id_paciente;
+		// $model->delete();	
+		// if(!isset($_GET['ajax']))
+		// 	$this->redirect(array('adminPaciente','id'=>$idPaciente));
 
-  //        }else{
+		$mprom=Diagnostico::model()->findAll("id_paciente",$id);//,array("id"=>$mpr->id));
+          echo "string".count($mprom);
+			//echo "la ide es: ".$mprom;
+
+         // if(count($mprom)>1){
+         // 	$noiseLast = $mprom[0]->nvl_exp_ruido;
+         // 	$noiseAntLast = $mprom[1]->nvl_exp_ruido;	
+
+         // }else{
 
          	
-  //        }
+         // }
 
-		//echo "Printing : ".$mprom;
+		//echo "Printing : ".$mprom
             //<pre><h1><?php echo "<PRE>";
             //var_dump($mprom);
             //echo "</PRE>"; ></h1></pre> 

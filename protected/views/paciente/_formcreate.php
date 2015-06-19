@@ -41,16 +41,22 @@
 
 			<div class="row">
 				<?php echo $form->labelEx($model,'Fecha De Nacimiento: '); ?>
-				<?php echo $form->textField($model,'Fecha_de_nacimiento',array('size'=>45,'maxlength'=>45)); ?>
-		<!-- 		<php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
+				
+				<?php $this->widget('zii.widgets.jui.CJuiDatePicker',array(
 					'language'=>'es',
 					'model'=>$model, 				// Model object
 					'attribute'=>'Fecha_de_nacimiento', // Attribute name
 					'options'=>array(
-						'dateFormat'=>'yy-mm-dd'
+						'dateFormat'=>'yy-mm-dd',
+						'showAnim'=>'slide',//'slide','fold','slideDown','fadeIn','blind','bounce','clip','drop'
+						'changeMonth'=>'true',
+						'changeYear'=>'true',
+						'yearRange'=>'1940:2099',
+        				'minDate' => '1940-01-01',      // minimum date
+        				'maxDate' => '2099-12-31',
 					), 			// jquery plugin options
 					'htmlOptions'=>array('readonly'=>true) // HTML options
-				)); ?> -->
+				)); ?>
 				<?php echo $form->error($model,'Fecha_de_nacimiento'); ?>
 			</div>
 

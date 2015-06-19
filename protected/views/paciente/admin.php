@@ -82,14 +82,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 						'url'=>'Yii::app()->createUrl("paciente/deletepaciente",array("id"=>$data->id))',
 
 					)
-
-					//Icono de oreja con + para agregar diagnostico
-/*					'adddiagnostico' => array(
-						'label'=>"Agregar Diagnostico",
-						'imageUrl'=>Yii::app()->request->baseUrl.'/images/nuevodiagnostico.png',
-						'url'=>'Yii::app()->createUrl("diagnostico/create",array("id"=>$data->id))',
-
-					),	*/
 			),
 		),
 	),
