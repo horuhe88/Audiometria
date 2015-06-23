@@ -160,8 +160,6 @@ class DiagnosticoController extends Controller
 
 		$dataA = array();
 		$dataO = array();
-	
-		//$A = array();
 
 		$eRuido = $d[0]["nvl_exp_ruido"];
 		
@@ -316,12 +314,14 @@ class DiagnosticoController extends Controller
 				$c++;
 			}
 
+			echo "oseo Izq _".$OI;
+
 			if ($datgapOabs[$cpar]  < 20) {
 				$cg++;
 			}
 
 
-			if ($c >= 8 && $cg >7  && $cg != 0 && $cg >0) {
+			if ($c >= 6 && $cg >=6  && $cg != 0 && $cg >0) {
 					$gapI = 'Conductiva';
 					
 				}elseif ($c == 0 ) {
@@ -364,18 +364,110 @@ class DiagnosticoController extends Controller
 //-------------------//----------------------ALARMA--------------------------------//----------------------------------
 
 //----------------------------------Audiometria de Seguimiento---------------------------------------------------------
-			$idPaciente = $d[0]["id_paciente"];
+		$idPaciente = $d[0]["id_paciente"];
 
-			$sqlDiagnostico = "SELECT * FROM diagnostico WHERE id_paciente = ".$idPaciente." AND id <= ".$id." ORDER BY id DESC LIMIT 2";	
+		$sqlDiagnostico = "SELECT * FROM diagnostico WHERE id_paciente = ".$idPaciente." AND id <= ".$id." ORDER BY id DESC LIMIT 2";	
 
-			$diagnosticos = Yii::app()->db
-				->createCommand($sqlDiagnostico)
-				->queryAll();
-
-
+		$diagnosticos = Yii::app()->db
+			->createCommand($sqlDiagnostico)
+			->queryAll();
 
 
+		echo "size ".count($diagnosticos);
+
+		//$sql="SELECT * FROM diagnostico WHERE id=".$id;
+
+		$dataAnow = array();
+		$dataAbef = array();
+		$restaIzq = array();
+		$restaDer = array();
+
+		$eRuido = $diagnosticos[0]["nvl_exp_ruido"];
+
+		//Datos Actuales de audiometria
+
+		$datAnow[] = $diagnosticos[0]["AIzq250"];	
+		$datAnow[] = $diagnosticos[0]["ADer250"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq500"];	
+		$datAnow[] = $diagnosticos[0]["ADer500"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq1000"];	
+		$datAnow[] = $diagnosticos[0]["ADer1000"];
 		
+		$datAnow[] = $diagnosticos[0]["AIzq2000"];	
+		$datAnow[] = $diagnosticos[0]["ADer2000"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq3000"];	
+		$datAnow[] = $diagnosticos[0]["ADer3000"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq4000"];	
+		$datAnow[] = $diagnosticos[0]["ADer4000"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq6000"];	
+		$datAnow[] = $diagnosticos[0]["ADer6000"];
+
+		$datAnow[] = $diagnosticos[0]["AIzq8000"];	
+		$datAnow[] = $diagnosticos[0]["ADer8000"];
+
+
+		//DAtos Audiometria anterior
+
+		$datAbef[] = $diagnosticos[1]["AIzq250"];	
+		$datAbef[] = $diagnosticos[1]["ADer250"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq500"];	
+		$datAbef[] = $diagnosticos[1]["ADer500"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq1000"];	
+		$datAbef[] = $diagnosticos[1]["ADer1000"];
+		
+		$datAbef[] = $diagnosticos[1]["AIzq2000"];	
+		$datAbef[] = $diagnosticos[1]["ADer2000"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq3000"];	
+		$datAbef[] = $diagnosticos[1]["ADer3000"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq4000"];	
+		$datAbef[] = $diagnosticos[1]["ADer4000"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq6000"];	
+		$datAbef[] = $diagnosticos[1]["ADer6000"];
+
+		$datAbef[] = $diagnosticos[1]["AIzq8000"];	
+		$datAbef[] = $diagnosticos[1]["ADer8000"];
+
+		$inc = 0;
+		$inc2 = 0;
+
+
+		for($i=0;$i<=7; $i++){
+
+			//OIDO IZQUIERDO
+			$cpar = 2 * $i;
+			$restaIzq[$i] = $datAnow[$cpar] - $datAbef[$cpar];
+
+			//OIDO DERECHO
+			$cpar = 2 * $i + 1;
+			$restaDer[$i] = $datAnow[$cpar] - $datAbef[$cpar];
+
+		if ($restaIzq[$i] >= 15 || $restaIzq[$i] <= -15) {
+			# code...
+			$inc++;
+			
+		}
+
+		if ($restaDer[$i] >= 15 || $restaDer[$i] <= -15) {
+			# code...
+			$inc2++;
+		}
+
+		}
+
+		echo "val mayores de 15:  ".$inc2;
+
+
+
 
 		  // foreach($mpr as $row):
 		  // echo $row->id."_"; 
@@ -435,7 +527,8 @@ class DiagnosticoController extends Controller
 			'difI'=> $difI, 'difD'=> $difD,'gapI'=>$gapI,'gapD'=>$gapD,
 			'c'=>$c , 'cd'=>$cd, 'datgapOabs'=>$datgapOabs,
 			'prob'=>$prob, 'probd'=>$probd,	'daIzq'=>$daIzq,'doIzq'=>$doIzq, 
-			'daDer'=>$daDer, 'doDer'=>$doDer , 'grade' => $grade, 'grade2' => $grade2, 'eRuido'=> $eRuido 
+			'daDer'=>$daDer, 'doDer'=>$doDer , 'grade' => $grade, 'grade2' => $grade2, 
+			'eRuido'=> $eRuido , 'inc' => $inc, 'inc2' => $inc2
 		));
 	}
 

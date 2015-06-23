@@ -315,7 +315,7 @@ function setConvetion(img){
             <pre><h1><font size=5.5 face="courier new"><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
             <h1>Tipo:</h1>
             <pre><h1><font size=5.5 face="courier"><?php echo $gapD; ?></h1></pre>
-            <pre><h1><font size=5.5 face="roman"><?php echo 'val < de 20(cgd): '.$probd; ?></h1></pre>
+            <pre><h1><font size=5.5 face="roman"><?php echo 'val < de 20(cgd): '.$inc2; ?></h1></pre>
 
             <!-- PARA IMPRIMIR UN ARRAY -->
 <!--             <pre><h1><php echo "<PRE>";
@@ -359,7 +359,7 @@ function setConvetion(img){
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $c; ?></h1></pre>
             <h1>Tipo:</h1>
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $gapI; ?></h1></pre>
-            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo 'val < de 20(cgd): '.$prob; ?></h1></pre>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo 'val < de 20(cgd): '.$inc; ?></h1></pre>
 <!--             <pre><H1><php echo "<PRE>";
             var_dump($difI);
             echo "</PRE>"; ?></h1></pre> -->
