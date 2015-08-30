@@ -101,8 +101,7 @@ $this->breadcrumbs=array(
             name: 'Aereo',
             color: '#F80000',
             marker: {
-//                symbol: 'triangle'
-				  symbol: 'url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png)'
+				  symbol: 'circle'
             },
             data: aereoA
 
@@ -112,7 +111,7 @@ $this->breadcrumbs=array(
             color: '#F80000',
             dashStyle: 'Dash',//Estilo linea
             marker: {
-                symbol: 'circle'
+                symbol: 'url(https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png)'
             },
             data: oseoA
             }]
@@ -264,6 +263,27 @@ function setConvetion(img){
 
 }
 
+function setAlert(izq, der){
+
+    if(izq >0 || der >0){
+        alert("Realizar audiometria dentro de 3 meses");
+    }
+
+}
+
+function setAlert2(lvlruido){
+
+    if (lvlruido <=80 || lvlruido <=82) {
+            alert("Próximo diagnostico dentro de 5 años");
+        }else if (82 < lvlruido && lvlruido <= 99) {
+            alert("Próximo diagnostico dentro de 1 año");
+        }else if (100<lvlruido) {
+            alert("Próximo diagnostico dentro de 6 meses");
+        }
+
+}
+
+
 </script>
 
 
@@ -277,12 +297,17 @@ function setConvetion(img){
             <div id="oidoDerecho" style="min-width: 310px; height: 400px; max-width: 450px ; margin: 0 auto"></div>
 
             <div>  
-            <img  src="https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png"onclick="setConvetion('https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/circle-red.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/circle-red.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-left.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-left.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/RedTriangle.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/RedTriangle.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/left-bracket.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/left-bracket.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down.png')"/>
             <!-- <img  src="https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16" width="16" height="12" onclick="setConvetion('https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16')" /> -->
+            <!-- <img  src="https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png"onclick="setConvetion('https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png')"/>
             <img  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png')" />
             <img  src="https://www.avistautilities.com/_layouts/avista/images/icons/outageRedTriangle.png" onclick="setConvetion('https://www.avistautilities.com/_layouts/avista/images/icons/outageRedTriangle.png')"/>
             <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.left-bracket.png')"/>
-            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/>
+            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/> -->
             </div>
 
             <h1> <font face="small fonts">Promedio de Perdida:</h1>
@@ -311,8 +336,8 @@ function setConvetion(img){
             <pre body style='background-color:<php echo 'yellow'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre>
             <pre body style='background-color:<php echo '#9932CC'?>' ><H1><font size=5.5 face="times new roman"><php echo $grade2; ?></h1></pre> -->
 
-            <h1>Valor GAP:</h1>
-            <pre><h1><font size=5.5 face="courier new"><?php echo 'val gap(cd): '.$cd; ?></h1></pre>
+            <!-- <h1>Valor GAP:</h1>
+            <pre><h1><font size=5.5 face="courier new"><php echo 'val gap(cd): '.$cd; ?></h1></pre> -->
             <h1>Tipo:</h1>
             <pre><h1><font size=5.5 face="courier"><?php echo $gapD; ?></h1></pre>
             <pre><h1><font size=5.5 face="roman"><?php echo 'val < de 20(cgd): '.$inc2; ?></h1></pre>
@@ -330,11 +355,17 @@ function setConvetion(img){
             <div id="oidoIzquierdo" style="min-width: 310px; height: 400px; max-width: 450px; margin: 0 auto"></div>
 
             <div>
-            <img  src="https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png')">
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/x-blue.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/x-blue.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-right.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-right.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/BlueSquare.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/BlueSquare.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/right-bracket.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/right-bracket.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down.png')"/>
+
+            <!-- <img  src="https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png')">
             <img  src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png')">
             <img  src="https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-16.png" onclick="setConvetion('https://cdn4.iconfinder.com/data/icons/vectory-symbols/40/square-16.png')">
             <img  src="https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png" onclick="setConvetion('https://cdn2.iconfinder.com/data/icons/crystalproject/Open-Office-Icons/lc_symbolshapes.right-bracket.png')">
-            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/>
+            <img  src="https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/feather/96/591279-arrow-down-16.png')"/> -->
             </div>
 
             <h1>Promedio de Perdida:</h1> 
@@ -355,8 +386,8 @@ function setConvetion(img){
             ?>
             <pre body style='background-color:<?php echo $bgr?>' ><H1><font size=5.5 face="Comic Sans MS"><?php echo $grade; ?></h1></pre>
             <!-- <pre body style='background-color:pink'><H1><font size=5.5 face="Comic Sans MS"><php echo $grade; ?></h1></pre> -->
-            <h1>Valor GAP:</h1>
-            <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $c; ?></h1></pre>
+            <!-- <h1>Valor GAP:</h1>
+            <pre><H1><font size=5.5 face="Comic Sans MS"><php echo $c; ?></h1></pre> -->
             <h1>Tipo:</h1>
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo $gapI; ?></h1></pre>
             <pre><H1><font size=5.5 face="Comic Sans MS"><?php echo 'val < de 20(cgd): '.$inc; ?></h1></pre>
@@ -380,5 +411,14 @@ function setConvetion(img){
 ?>
 
 
+<?php
+    echo "<script>"
+    ."setAlert(".$inc.",".$inc2.")"
+    ."</script>"
+?>
 
-
+<?php
+    echo "<script>"
+    ."setAlert2(".$eRuido.")"
+    ."</script>"
+?>

@@ -314,7 +314,7 @@ class DiagnosticoController extends Controller
 				$c++;
 			}
 
-			echo "oseo Izq _".$OI;
+			//echo "oseo Izq _".$OI;
 
 			if ($datgapOabs[$cpar]  < 20) {
 				$cg++;
@@ -368,18 +368,17 @@ class DiagnosticoController extends Controller
 		$inc = 0;
 		$inc2 = 0;
 
-		if ($id > 2) {
+		
 			# code...
 			$idPaciente = $d[0]["id_paciente"];
+
 
 			$sqlDiagnostico = "SELECT * FROM diagnostico WHERE id_paciente = ".$idPaciente." AND id <= ".$id." ORDER BY id DESC LIMIT 2";	
 
 			$diagnosticos = Yii::app()->db
 				->createCommand($sqlDiagnostico)
 				->queryAll();
-
-
-			echo "size ".count($diagnosticos);
+		if (count($diagnosticos) > 1) {		
 
 			//$sql="SELECT * FROM diagnostico WHERE id=".$id;
 
@@ -417,7 +416,7 @@ class DiagnosticoController extends Controller
 			$datAnow[] = $diagnosticos[0]["ADer8000"];
 
 
-			//DAtos Audiometria anterior
+			//Datos Audiometria anterior
 
 			$datAbef[] = $diagnosticos[1]["AIzq250"];	
 			$datAbef[] = $diagnosticos[1]["ADer250"];
@@ -454,77 +453,39 @@ class DiagnosticoController extends Controller
 				$cpar = 2 * $i + 1;
 				$restaDer[$i] = $datAnow[$cpar] - $datAbef[$cpar];
 
-			if ($restaIzq[$i] >= 15 || $restaIzq[$i] <= -15) {
-				# code...
-				$inc++;
-				
-			}
+				if ($restaIzq[$i] >= 15 || $restaIzq[$i] <= -15) {		
+					$inc++;		
+				}
 
-			if ($restaDer[$i] >= 15 || $restaDer[$i] <= -15) {
-				# code...
-				$inc2++;
-			}
+				if ($restaDer[$i] >= 15 || $restaDer[$i] <= -15) {
+					$inc2++;
+				}
 
 			}
 
 			// echo "val mayores de 15:  ".$inc2;
 
-
+		}else{
+			$inc = 0;
+			$inc2 = 0;
 
 		}
 
-		
 
-		  // foreach($mpr as $row):
-		  // echo $row->id."_"; 
-		  // endforeach;
-
-
-         // if(count($mprom)>1){
-         // 	$noiseLast = $mprom[0]->nvl_exp_ruido;
-         // 	$noiseAntLast = $mprom[1]->nvl_exp_ruido;	
-
-         // }else{
-
-         	
-         // }
-
-		//echo "Printing : ".$mprom
-            //<pre><h1><?php echo "<PRE>";
-            //var_dump($mprom);
-            //echo "</PRE>"; ></h1></pre> 
-
-
-		// if (80 <= $eRuido[0] && $eRuido[0] <= 82) {
+		// if ($eRuido <=80 || $eRuido <=82) {
 		// 	# code...
 		// 	echo "Próximo diagnostico dentro de 5 años";
-		// }elseif (82 < $eRuido[1] && $eRuido[1] <= 99) {
+		// }elseif (82 < $eRuido && $eRuido <= 99) {
 		// 	# code...
 		// 	echo "Próximo diagnostico dentro de 1 año";
-		// }elseif (100<$eRuido[1]) {
+		// }elseif (100<$eRuido) {
 		// 	# code...
 		// 	echo "Próximo diagnostico dentro de 6 meses";
 		// }
 
 //----------------------------------Fin Audiometria de Seguimiento----------------------------------------------------
 
-		// if ($eRuido[1]< ($eRuido[1]+15)  || ($eRuido[1]-15) < $eRuido[1] ) {
-		// 	# code...
-		// 	echo "Debe hacer Audiometria de comprobación";
-		// }
 
-
-		// $mprom =new PromAlarma();
-		// $mprom->val_izq= $prompe;
-		// $mprom->val_der= $prompe2;
-		// $mprom->save();
-
-		// $mprom=PromAlarma::model()->findAll("val_izq",$prompe);
-		// $mprom=PromAlarma::model()->findAll("val_der",$prompe2);
-
-		// if (condition) {
-		// 	# code...
-		// }
 
 //-------------------//----------------------FIN ALARMA--------------------------------//----------------------------
 
@@ -553,6 +514,7 @@ class DiagnosticoController extends Controller
 		));
 	}
 
+	
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
