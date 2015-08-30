@@ -301,7 +301,7 @@ function setAlert2(lvlruido){
             <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-left.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-left.png')"/>
             <img  src="http://localhost:8080/yiiframework/audiometria/images/RedTriangle.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/RedTriangle.png')"/>
             <img  src="http://localhost:8080/yiiframework/audiometria/images/left-bracket.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/left-bracket.png')"/>
-            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down-red.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down-red.png')"/>
             <!-- <img  src="https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16" width="16" height="12" onclick="setConvetion('https://www.iconfinder.com/icons/8030/arrow_back_blue_last_icon#size=16')" /> -->
             <!-- <img  src="https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png"onclick="setConvetion('https://cdn1.iconfinder.com/data/icons/material-core/20/check-circle-outline-blank-16.png')"/>
             <img  src="https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_keyboard_arrow_left_48px-32.png')" />
@@ -359,7 +359,7 @@ function setAlert2(lvlruido){
             <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-right.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-right.png')"/>
             <img  src="http://localhost:8080/yiiframework/audiometria/images/BlueSquare.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/BlueSquare.png')"/>
             <img  src="http://localhost:8080/yiiframework/audiometria/images/right-bracket.png" alt="circle" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/right-bracket.png')"/>
-            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down.png')"/>
+            <img  src="http://localhost:8080/yiiframework/audiometria/images/arrow-down-blue.png" onclick="setConvetion('http://localhost:8080/yiiframework/audiometria/images/arrow-down-blue.png')"/>
 
             <!-- <img  src="https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png" onclick="setConvetion('https://cdn0.iconfinder.com/data/icons/web/512/e52-16.png')">
             <img  src="https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png" onclick="setConvetion('https://cdn3.iconfinder.com/data/icons/faticons/32/arrow-right-01-16.png')">
